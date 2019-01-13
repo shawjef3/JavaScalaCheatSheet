@@ -88,6 +88,10 @@ class C {
   <tr><th colspan="2">mutability</td></tr>
   <tr><td><pre>int i;</pre></td><td><pre>var i: Int</pre></td></tr>
   <tr><td><pre>final int i;</pre></td><td><pre>val i: Int</pre></td></tr>
+  <tr><td><pre>void f(int i) {
+  i = 4;
+}</pre></td><td></td></tr>
+  <tr><td><pre>void f(final int i) {}</pre></td><td><pre>def f(i: Int): Unit = ()</pre></td></tr>
 <tr><th colspan="2">immutable data structure</td></tr>
   <tr><td><pre>public class C implements Serializable {
     private final int c;
