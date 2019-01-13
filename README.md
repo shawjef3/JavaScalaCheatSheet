@@ -89,8 +89,6 @@ f(ints: _*)</pre></td></tr>
 }</pre></td><td><pre>object C {
   def f(i: Int): Int = i + 1
 }</pre></td></tr>
-  <tr><th colspan="2">calling</td></tr>
-  <tr><td><pre></pre></td><td><pre></pre></td></tr>
   <tr><th colspan="2">member access permissions</td></tr>
   <tr><th colspan="2">private</td></tr>
   <tr><td><pre>private int i;</pre></td><td><pre>private var i: Int</pre></td></tr>
