@@ -311,7 +311,7 @@ val thirdInt = ints(3)</pre></td></tr>
   <tr><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td></tr>
   <tr><td><pre>+, -, *, /, %</pre></td><td><pre>+, -, *, /, %</pre></td></tr>
   <tr><td><pre>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</pre></td><td><pre>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</pre></td></tr>
-  <tr><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td></tr>
+  <tr><td><pre>+=, -=, *=, /=, %=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</pre></td><td><pre>+=, -=, *=, /=, %=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</pre></td></tr>
   <tr><td><pre>++, --</pre></td><td>☹</td></tr>
   <tr><td><pre>?:</pre>
   example
