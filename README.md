@@ -280,7 +280,7 @@ or
   example
 <pre>int i = test ? 0 : 1;</pre></td><td><pre>var i = if (test) 0 else 1</pre></td></tr>
   <tr><th colspan="2">io</td></tr>
-  <tr><th colspan="2">writing to files or standard error is the same<td></tr>
+  <tr><td colspan="2">writing to files or standard error is the same</td></tr>
   <tr><td><pre>System.out.println("hi");</pre></td><td><pre>System.out.println("hi")</pre>or<pre>println("hi")</pre></td></tr>
   <tr><td><pre>InputStreamReader reader =
   new InputStreamReader(System.in);
