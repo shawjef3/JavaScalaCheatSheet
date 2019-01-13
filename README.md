@@ -66,6 +66,7 @@ is shorthand for
   val i: Int = 3
 }</pre></td></tr>
   <tr><th colspan="2">methods</td></tr>
+  <tr><th colspan="2">declaration</td></tr>
   <tr><td><pre>void f(int i) {}</pre></td><td><pre>def f(i: Int): Unit = {}</pre>
   or
 <pre>def f(i: Int): Unit = ()</pre></td></tr>
@@ -89,6 +90,8 @@ f(ints: _*)</pre></td></tr>
 }</pre></td><td><pre>object C {
   def f(i: Int): Int = i + 1
 }</pre></td></tr>
+  <tr><th colspan="2">calling</td></tr>
+  <tr><td><pre></pre></td><td><pre></pre></td></tr>
   <tr><th colspan="2">member access permissions</td></tr>
   <tr><th colspan="2">private</td></tr>
   <tr><td><pre>private int i;</pre></td><td><pre>private var i: Int</pre></td></tr>
@@ -441,10 +444,13 @@ Collection&lt;Object&gt; list =
   JavaConverters.asJavaCollection(Integers.list());</pre></td><td><pre>object Integers {
   val list: Seq[Int] = Seq(1)
 }</pre></td></tr>
-  <tr><th colspan="2">lambdas</th></tr>
+  <tr><th colspan="2">lambda creation</th></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString =
   i -> i.toString();</pre></td><td><pre>val toString: Integer => String =
   i => i.toString</pre></td></tr>
+  <tr><td><pre>Function&lt;Integer, String&gt; toString;
+Integer result = toString.apply(3);</pre></td><td><pre>val toString: Integer => String
+val result = toString(3)</pre></td></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString =
   Object::toString;</pre></td><td><pre>val toString: Int => String =
   _.toString</pre></td></tr>
@@ -463,5 +469,16 @@ Collection&lt;Object&gt; list =
   <tr><td><pre>IntSupplier read =
   () -> 3;</pre></td><td><pre>val read: Unit -> Int =
   () => 3</pre></td></tr>
+   <tr><th colspan="2">lambda calls</th></tr>
+  <tr><td><pre>Function&lt;Integer, String&gt; toString;
+toString.apply(3)</pre></td><td><pre>val toString: Integer => String
+toString(3)</pre></td></tr>
+  <tr><td><pre>Consumer<String> print;
+print.accept("hi");</pre></td><td><pre>val print: String => Unit
+print("hi")</pre></td></tr>
+  <tr><td><pre>Supplier<Integer> read;
+  read.get();</pre></td><td><pre>val read: Unit -> Integer
+read()</pre></td></tr>
+   <tr><th colspan="2"></th></tr
   <tr><td><pre></pre></td><td><pre></pre></td></tr>
 </table>
