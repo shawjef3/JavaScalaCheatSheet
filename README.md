@@ -222,7 +222,15 @@ value match {
   <tr><td><div class="highlight highlight-source-java"><pre></pre></div></td><td><div class="highlight highlight-source-scala"><pre>AnyVal</pre></div></td></tr>
   <tr><th colspan="2">arrays</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>int[] ints = new int[] {1,2,3};</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var ints = Array(1,2,3)</pre></div></td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>int[][] ints = new int[][] {{1,2,3},{4,5,6},{7,8,9}};</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var ints = Array(Array(1,2,3), Array(4,5,6), Array(7,8,9))</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>int[][] ints = new int[][] {
+  {1,2,3},
+  {4,5,6},
+  {7,8,9}
+};</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var ints = Array(
+  Array(1,2,3),
+  Array(4,5,6),
+  Array(7,8,9)
+)</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>int[] ints = new int[3];</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var ints = Array.ofDim[Int](3)</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>int[][] ints = new int[3];
 for (int i=0; i<3; i++) {
