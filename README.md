@@ -22,7 +22,7 @@ import me.jeffshaw.Class1</pre>
 or
 <pre>import me.jeffshaw.{Class0, Class1}</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.*;</pre></td><td><pre>import me.jeffshaw._</pre></pre></td></tr>
-  <tr><td>☹</td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
+  <tr><td>☹</td><td><pre>import me.jeffshaw.{Class =&gt; RenamedClass}</pre></td></tr>
   <tr><th colspan="2">classes</td></tr>
   <tr><td><pre>class C {}</pre></td><td><pre>class C</pre></td></tr>
   <tr><td><pre>class C {
@@ -202,20 +202,20 @@ do {
 do {
   i += 1
 } while (i < 10)</pre></td></tr>
-  <tr><td><pre>for (int i: collection) {}</pre></td><td><pre>for (i <- collection) {}</pre></td></tr>
+  <tr><td><pre>for (int i: collection) {}</pre></td><td><pre>for (i &lt;- collection) {}</pre></td></tr>
   <tr><td><pre>for (int i: collection) {
   for (int j: otherCollection) {}
 }</pre></td><td><pre>for {
-  i <- collection
-  j <- otherCollection
+  i &lt;- collection
+  j &lt;- otherCollection
 } {}</pre></td></tr>
   <tr><td><pre>switch (value) {
   case 0:
     break;
   default:
 }</pre></td><td><pre>value match {
-  case 0 =>
-  case _ =>
+  case 0 =&gt;
+  case _ =&gt;
 }</pre></td></tr>
   <tr><td><pre>switch (value) {
   case 0:
@@ -223,8 +223,8 @@ do {
     break;
   default:
 }</pre></td><td><pre>value match {
-  case 0 | 1 =>
-  case _ =>
+  case 0 | 1 =&gt;
+  case _ =&gt;
 }</pre></td></tr>
   <tr><td><pre>// cases share switch's scope
 switch (value) {
@@ -237,9 +237,9 @@ switch (value) {
   }
 }</pre></td><td><pre>// cases each have their own scope
 value match {
-  case 0 =>
+  case 0 =&gt;
     val i = 0;
-  case _ =>
+  case _ =&gt;
     val i = 0;
 }</pre></td></tr>
   <tr><th colspan="2">exceptions</td></tr>
@@ -249,8 +249,8 @@ value match {
 } catch (RuntimeException e) {
 } finally {}</pre></td><td><pre>try {
 } catch {
-    case e: IOException =>
-    case e: RuntimeException =>
+    case e: IOException =&gt;
+    case e: RuntimeException =&gt;
 } finally {}</pre></td></tr>
   <tr><th colspan="2">try-with-resources</td></tr>
   <tr><td><pre>try (InputStream i0 = new InputStream();
@@ -304,13 +304,13 @@ or
 int thirdInt = int[3];</pre></td><td><pre>val ints: Array[Int]
 val thirdInt = ints(3)</pre></td></tr>
   <tr><th colspan="2">operations</td></tr>
-  <tr><td><pre>&&, ||, !</pre></td><td><pre>&&, ||, !</pre></td></tr>
+  <tr><td><pre>&amp;&amp;, ||, !</pre></td><td><pre>&amp;&amp;, ||, !</pre></td></tr>
   <tr><td>for primitives<pre>==, !=</pre></td><td><pre>==, !=</pre></td></tr>
   <tr><td>for references<pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
   <tr><td>for references<pre>.equals</pre></td><td><pre>==, !=</pre></td></tr>
   <tr><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td></tr>
   <tr><td><pre>+, -, *, /, %</pre></td><td><pre>+, -, *, /, %</pre></td></tr>
-  <tr><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</pre></td><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</pre></td></tr>
+  <tr><td><pre>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</pre></td><td><pre>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</pre></td></tr>
   <tr><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td></tr>
   <tr><td><pre>++, --</pre></td><td>☹</td></tr>
   <tr><td><pre>?:</pre>
@@ -327,10 +327,10 @@ BufferedReader reader = Files.newBufferedReader(path);
 for (String line: reader.lines().iterator()) {}</pre></td><td><pre>import scala.collection.JavaConverters._
 val path = Paths.get("file")
 val reader = Files.newBufferedReader(path)
-for (line <- reader.lines.iterator.asScala) {}</pre>
+for (line &lt;- reader.lines.iterator.asScala) {}</pre>
 or
 <pre>val source = io.Source.fromFile("file")
-for (line <- source.getLines()) {}</pre></td></tr>
+for (line &lt;- source.getLines()) {}</pre></td></tr>
   <tr><th colspan="2">singleton</td></tr>
   <tr><td><pre>public class S {
     private static S ourInstance = new S();
@@ -374,11 +374,11 @@ List&lt;Integer&gt; js = Arrays.asList(4,5,6);
 List&lt;Integer&gt; duplicateSums = new ArrayList&lt;&gt;();
 
 for (int i: is) {
-    for (int j : js) {
-        for (int duplicated : duplicate(i + j)) {
-            duplicateSums.add(duplicated);
-        }
+  for (int j : js) {
+    for (int duplicated : duplicate(i + j)) {
+      duplicateSums.add(duplicated);
     }
+  }
 }
 
 return duplicateSums;
@@ -392,20 +392,20 @@ Java Streams
 IntStream is = IntStream.of(1,2,3);
 IntStream js = IntStream.of(4,5,6);
 IntStream duplicateSums =
-    is.flatMap(i -&gt;
-      js.flatMap(j -&gt;
-        duplicate(i + j)
-      )
-    );
+  is.flatMap(i -&gt;
+    js.flatMap(j -&gt;
+      duplicate(i + j)
+    )
+  );
 
 return duplicateSums.boxed().collect(Collectors.toList());</pre>
 </td><td><pre>def duplicate(i: Int): Seq[Int] = Seq(i, i)
 val is = Seq(1,2,3)
 val js = Seq(4,5,6)
 for {
-  i <- is
-  j <- js
-  duplicated <- duplicate(i + j)
+  i &lt;- is
+  j &lt;- js
+  duplicated &lt;- duplicate(i + j)
 } yield duplicated
 </pre></td></tr>
   <tr><td><pre>ListenableFuture&lt;Integer&gt; future0;
@@ -413,19 +413,19 @@ ListenableFuture&lt;Integer&gt; future1;
 
 // Add the results of two futures.
 return Futures.transformAsync(
-    future0,
-    value0 -&gt;
-        Futures.transform(
-            future1,
-            value1 -&gt; value0 + value1
-        )
+  future0,
+  value0 -&gt;
+    Futures.transform(
+      future1,
+      value1 -&gt; value0 + value1
+    )
 );</pre></td><td><pre>val future0: Future[Int]
 val future1: Future[Int]
 
 // Add the results of two futures.
 for {
-value0 <- future0
-value1 <- future1
+  value0 &lt;- future0
+  value1 &lt;- future1
 } yield value0 + value1</pre></td></tr>
   <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></th></tr>>
   <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collection conversions</a></th></tr>
@@ -447,38 +447,38 @@ Collection&lt;Object&gt; list =
 }</pre></td></tr>
   <tr><th colspan="2">lambda creation</th></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString =
-  i -> i.toString();</pre></td><td><pre>val toString: Integer => String =
-  i => i.toString</pre></td></tr>
+  i -> i.toString();</pre></td><td><pre>val toString: Integer =&gt; String =
+  i =&gt; i.toString</pre></td></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString;
-Integer result = toString.apply(3);</pre></td><td><pre>val toString: Integer => String
+Integer result = toString.apply(3);</pre></td><td><pre>val toString: Integer =&gt; String
 val result = toString(3)</pre></td></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString =
-  Object::toString;</pre></td><td><pre>val toString: Int => String =
+  Object::toString;</pre></td><td><pre>val toString: Int =&gt; String =
   _.toString</pre></td></tr>
   <tr><td><pre>IntFunction&lt;String&gt; toString =
-  Integer::toString;</pre></td><td><pre>val toString: Int => String =
-  i => i.toString</pre></td></tr>
+  Integer::toString;</pre></td><td><pre>val toString: Int =&gt; String =
+  i =&gt; i.toString</pre></td></tr>
   <tr><td><pre>Consumer&lt;String&gt; print =
-  System.out::println;</pre></td><td><pre>val print: String => Unit =
+  System.out::println;</pre></td><td><pre>val print: String =&gt; Unit =
   println</pre></td></tr>
   <tr><td><pre>IntConsumer print =
-  System.out::println;</pre></td><td><pre>val print: Int => Unit =
+  System.out::println;</pre></td><td><pre>val print: Int =&gt; Unit =
   println</pre></td></tr>
   <tr><td><pre>Supplier&lt;Integer&gt; read =
-  () -> 3;</pre></td><td><pre>val read: Unit -> Integer =
-  () => 3</pre></td></tr>
+  () -> 3;</pre></td><td><pre>val read: Unit =&gt; Integer =
+  () =&gt; 3</pre></td></tr>
   <tr><td><pre>IntSupplier read =
-  () -> 3;</pre></td><td><pre>val read: Unit -> Int =
-  () => 3</pre></td></tr>
+  () -> 3;</pre></td><td><pre>val read: Unit =&gt; Int =
+  () =&gt; 3</pre></td></tr>
    <tr><th colspan="2">lambda calls</th></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString;
-toString.apply(3)</pre></td><td><pre>val toString: Integer => String
+toString.apply(3)</pre></td><td><pre>val toString: Integer =&gt; String
 toString(3)</pre></td></tr>
   <tr><td><pre>Consumer&lt;String&gt; print;
-print.accept("hi");</pre></td><td><pre>val print: String => Unit
+print.accept("hi");</pre></td><td><pre>val print: String =&gt; Unit
 print("hi")</pre></td></tr>
   <tr><td><pre>Supplier&lt;Integer&gt; read;
-  read.get();</pre></td><td><pre>val read: Unit => Integer
+  read.get();</pre></td><td><pre>val read: Unit =&gt; Integer
 read()</pre></td></tr>
    <tr><th colspan="2"></th></tr
   <tr><td><pre></pre></td><td><pre></pre></td></tr>
