@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is intended as a reference to help people fluent in Java or Scala to quickly become fluent in the other.
+This is intended as a reference to help people fluent in Java or Scala to become minimally fluent in the other.
 
 ## Cheat Sheet
 
