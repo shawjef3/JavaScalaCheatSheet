@@ -474,10 +474,10 @@ val result = toString(3)</pre></td></tr>
   <tr><td><pre>Function&lt;Integer, String&gt; toString;
 toString.apply(3)</pre></td><td><pre>val toString: Integer => String
 toString(3)</pre></td></tr>
-  <tr><td><pre>Consumer<String> print;
+  <tr><td><pre>Consumer&lt;String&gt; print;
 print.accept("hi");</pre></td><td><pre>val print: String => Unit
 print("hi")</pre></td></tr>
-  <tr><td><pre>Supplier<Integer> read;
+  <tr><td><pre>Supplier&lt;Integer&gt; read;
   read.get();</pre></td><td><pre>val read: Unit => Integer
 read()</pre></td></tr>
    <tr><th colspan="2"></th></tr
