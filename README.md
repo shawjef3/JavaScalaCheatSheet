@@ -1,4 +1,10 @@
-# Java/Scala Cheet Sheet
+# Java/Scala Cheat Sheet
+
+## Introduction
+
+This is intended as a reference to help people fluent in Java or Scala to quickly become fluent in the other.
+
+## Cheat Sheet
 
 <table align="center">
   <tr><th>Java</th><th>Scala</th></tr>
