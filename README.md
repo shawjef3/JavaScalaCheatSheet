@@ -44,6 +44,17 @@ is shorthand for
   <tr><td><div class="highlight highlight-source-java"><pre>class C&lt;A extends Comparable, Serializable&gt; {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[A <: Comparable with Serializable]</pre></div></td></tr>
   <tr><td></td><td><div class="highlight highlight-source-scala"><pre>class C[-A]</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre></pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[+A]</pre></div></td></tr>
+  <tr><th colspan="2">interfaces</td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>interface I {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>trait I {}</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>interface I&lt;A&gt; {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>trait I[A] {}</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>interface I {
+  void method(int i) {}
+}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>trait I {
+  def method(i: Int): Unit = {}
+}</pre></div></td></tr>
+  <tr><td></td><td><div class="highlight highlight-source-scala"><pre>trait I {
+  val i: Int = 3
+}</pre></div></td></tr>
   <tr><th colspan="2">methods</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>void f(int i) {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>def f(i: Int): Unit = {}</pre></div>
   or
@@ -62,6 +73,18 @@ is shorthand for
 }</pre></div></td><td><div class="highlight highlight-source-scala"><pre>object C {
   def f(i: Int): Int = i + 1
 }</pre></div></td></tr>
+  <tr><th colspan="2">member access permissions</td></tr>
+  <tr><th colspan="2">private</td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>private int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>private var i: Int</pre></div></td></tr>
+  <tr><th colspan="2">package private</td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>package a
+class C {
+  private[a] var i: Int
+}</pre></div></td></tr>
+  <tr><th colspan="2">public</td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>public int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var i: Int</pre></div></td></tr>
+  <tr><th colspan="2">protected</td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>protected int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>protected var i: Int</pre></div></td></tr>
   <tr><th colspan="2">mutability</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var i: Int</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>final int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>val i: Int</pre></div></td></tr>
@@ -133,18 +156,10 @@ is shorthand for
     this(0)
   }
 }</pre></div></td></tr>
-  <tr><th colspan="2">member access permissions</td></tr>
-  <tr><th colspan="2">private</td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>private int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>private var i: Int</pre></div></td></tr>
-  <tr><th colspan="2">package private</td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>private[package] var i: Int</pre></div></td></tr>
-  <tr><th colspan="2">public</td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>public int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var i: Int</pre></div></td></tr>
-  <tr><th colspan="2">protected</td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>protected int i;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>protected var i: Int</pre></div></td></tr>
   <tr><th colspan="2">control structures</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>return;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>()</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>return 0;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>0</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>return test ? 0 : 1;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>if (test) 0 else 1</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>if (test) {
   doSomething();
 } else {
