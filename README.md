@@ -477,7 +477,7 @@ toString(3)</pre></td></tr>
 print.accept("hi");</pre></td><td><pre>val print: String => Unit
 print("hi")</pre></td></tr>
   <tr><td><pre>Supplier<Integer> read;
-  read.get();</pre></td><td><pre>val read: Unit -> Integer
+  read.get();</pre></td><td><pre>val read: Unit => Integer
 read()</pre></td></tr>
    <tr><th colspan="2"></th></tr
   <tr><td><pre></pre></td><td><pre></pre></td></tr>
