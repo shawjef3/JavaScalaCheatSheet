@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is intended as a reference to help people fluent in Java or Scala to become minimally fluent in the other.
+This is intended as a reference to help people fluent in Java or Scala to become minimally fluent in the other. It is not intended as a best practices guide or style guide.
 
 ## Cheat Sheet
 
@@ -17,7 +17,6 @@ import me.jeffshaw.Class1</pre>
 or
 <pre>import me.jeffshaw.{Class0, Class1}</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.*;</pre></td><td><pre>import me.jeffshaw._</pre></pre></td></tr>
-  <tr><td>☹</td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
   <tr><td>☹</td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
   <tr><th colspan="2">classes</td></tr>
   <tr><td><pre>class C {}</pre></td><td><pre>class C</pre></td></tr>
