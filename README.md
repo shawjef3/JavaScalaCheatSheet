@@ -42,7 +42,7 @@ is shorthand for
   <tr><td><div class="highlight highlight-source-java"><pre>class C&lt;A&gt; {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[A]</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>class C&lt;A extends Comparable&gt; {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[A <: Comparable]</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>class C&lt;A extends Comparable, Serializable&gt; {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[A <: Comparable with Serializable]</pre></div></td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre></pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[-A]</pre></div></td></tr>
+  <tr><td></td><td><div class="highlight highlight-source-scala"><pre>class C[-A]</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre></pre></div></td><td><div class="highlight highlight-source-scala"><pre>class C[+A]</pre></div></td></tr>
   <tr><th colspan="2">methods</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>void f(int i) {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>def f(i: Int): Unit = {}</pre></div>
@@ -129,7 +129,7 @@ is shorthand for
 </pre></div></td><td><div class="highlight highlight-source-scala"><pre>case class C(
   @BeanProperty var c: Int
 ) {
-  def this() {
+  def this() {  
     this(0)
   }
 }</pre></div></td></tr>
@@ -181,6 +181,15 @@ do {
   default:
 }</pre></div></td><td><div class="highlight highlight-source-scala"><pre>value match {
   case 0 =>
+  case _ =>
+}</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>switch (value) {
+  case 0:
+  case 1:
+    break;
+  default:
+}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>value match {
+  case 0 | 1 =>
   case _ =>
 }</pre></div></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>// cases share switch's scope
