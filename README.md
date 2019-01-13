@@ -11,8 +11,8 @@ import me.jeffshaw.Class1</pre>
 or
 <pre>import me.jeffshaw.{Class0, Class1}</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.*;</pre></td><td><pre>import me.jeffshaw._</pre></pre></td></tr>
-  <tr><td></td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
-  <tr><td></td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
+  <tr><td>☹</td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
+  <tr><td>☹</td><td><pre>import me.jeffshaw.{Class => RenamedClass}</pre></td></tr>
   <tr><th colspan="2">classes</td></tr>
   <tr><td><pre>class C {}</pre></td><td><pre>class C</pre></td></tr>
   <tr><td><pre>class C {
@@ -42,8 +42,8 @@ is shorthand for
   <tr><td><pre>class C&lt;A&gt; {}</pre></td><td><pre>class C[A]</pre></td></tr>
   <tr><td><pre>class C&lt;A extends Comparable&gt; {}</pre></td><td><pre>class C[A <: Comparable]</pre></td></tr>
   <tr><td><pre>class C&lt;A extends Comparable, Serializable&gt; {}</pre></td><td><pre>class C[A <: Comparable with Serializable]</pre></td></tr>
-  <tr><td></td><td><pre>class C[-A]</pre></td></tr>
-  <tr><td><pre></pre></td><td><pre>class C[+A]</pre></td></tr>
+  <tr><td>☹</td><td><pre>class C[-A]</pre></td></tr>
+  <tr><td>☹</td><td><pre>class C[+A]</pre></td></tr>
   <tr><th colspan="2">interfaces</td></tr>
   <tr><td><pre>interface I {}</pre></td><td><pre>trait I {}</pre></td></tr>
   <tr><td><pre>interface I&lt;A&gt; {}</pre></td><td><pre>trait I[A] {}</pre></td></tr>
@@ -52,7 +52,7 @@ is shorthand for
 }</pre></td><td><pre>trait I {
   def method(i: Int): Unit = {}
 }</pre></td></tr>
-  <tr><td></td><td><pre>trait I {
+  <tr><td>☹</td><td><pre>trait I {
   val i: Int = 3
 }</pre></td></tr>
   <tr><th colspan="2">methods</td></tr>
@@ -90,7 +90,7 @@ class C {
   <tr><td><pre>final int i;</pre></td><td><pre>val i: Int</pre></td></tr>
   <tr><td><pre>void f(int i) {
   i = 4;
-}</pre></td><td></td></tr>
+}</pre></td><td>☹</td></tr>
   <tr><td><pre>void f(final int i) {}</pre></td><td><pre>def f(i: Int): Unit = ()</pre></td></tr>
 <tr><th colspan="2">immutable data structure</td></tr>
   <tr><td><pre>public class C implements Serializable {
@@ -226,6 +226,20 @@ value match {
   case _ =>
     val i = 0;
 }</pre></td></tr>
+  <tr><th colspan="2">exceptions</td></tr>
+  <tr><td><pre>throw new Exception();</pre></td><td><pre>throw new Exception()</pre></td></tr>
+  <tr><td><pre>try {
+} catch (IOException e) {
+} catch (RuntimeException e) {
+} finally {}</pre></td><td><pre>try {
+} catch {
+    case e: IOException =>
+    case e: RuntimeException =>
+} finally {}</pre></td></tr>
+  <tr><th colspan="2">try-with-resources</td></tr>
+  <tr><td><pre>try (InputStream i0 = new InputStream();
+                    InputStream i1 = new InputStream()) {
+}</pre></td><td>☹</td></tr>
   <tr><th colspan="2">data types</td></tr>
   <tr><td><pre>void</pre></td><td><pre>Unit</pre></td></tr>
   <tr><td><pre>bool</pre></td><td><pre>Boolean</pre></td></tr>
@@ -236,8 +250,8 @@ value match {
   <tr><td><pre>float</pre></td><td><pre>Float</pre></td></tr>
   <tr><td><pre>double</pre></td><td><pre>Double</pre></td></tr>
   <tr><td><pre>Object</pre></td><td><pre>AnyRef</pre></td></tr>
-  <tr><td><pre></pre></td><td><pre>Any</pre></td></tr>
-  <tr><td><pre></pre></td><td><pre>AnyVal</pre></td></tr>
+  <tr><td>☹</td><td><pre>Any</pre></td></tr>
+  <tr><td>☹</td><td><pre>AnyVal</pre></td></tr>
   <tr><th colspan="2">null</td></tr>
   <tr><td><pre>null</pre></td><td><pre>null</pre></td></tr>
   <tr><th colspan="2">arrays</td></tr>
@@ -275,7 +289,7 @@ or
   <tr><td><pre>+, -, *, /, %</pre></td><td><pre>+, -, *, /, %</pre></td></tr>
   <tr><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</pre></td><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</pre></td></tr>
   <tr><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td><td><pre>+=, -=, *=, /=, %=, &lt;&lt=, &gt;&gt;=, &amp;=, ^=, |=</pre></td></tr>
-  <tr><td><pre>++, --</pre></td><td></td></tr>
+  <tr><td><pre>++, --</pre></td><td>☹</td></tr>
   <tr><td><pre>?:</pre>
   example
 <pre>int i = test ? 0 : 1;</pre></td><td><pre>var i = if (test) 0 else 1</pre></td></tr>
