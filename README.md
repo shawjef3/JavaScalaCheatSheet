@@ -238,6 +238,8 @@ value match {
   <tr><td><pre>Object</pre></td><td><pre>AnyRef</pre></td></tr>
   <tr><td><pre></pre></td><td><pre>Any</pre></td></tr>
   <tr><td><pre></pre></td><td><pre>AnyVal</pre></td></tr>
+  <tr><th colspan="2">null</td></tr>
+  <tr><td><pre>null</pre></td><td><pre>null</pre></td></tr>
   <tr><th colspan="2">arrays</td></tr>
   <tr><td><pre>int[] ints = new int[] {1,2,3};</pre></td><td><pre>var ints = Array(1,2,3)</pre></td></tr>
   <tr><td><pre>int[][] ints = new int[][] {
