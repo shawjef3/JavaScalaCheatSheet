@@ -226,7 +226,9 @@ for (int i=0; i<3; i++) {
   intStrings[i] = Integer.toString(i);
 }</pre></div>
 or
-<div class="highlight highlight-source-java"><pre>IntStream.range(0, 3).mapToObj(Integer::toString).toArray();</pre></div>
+<div class="highlight highlight-source-java"><pre>IntStream.range(0, 3)
+  .mapToObj(Integer::toString)
+  .toArray();</pre></div>
 </td><td><div class="highlight highlight-source-scala"><pre>var intStrings = Array.tabulate(3)(_.toString)</pre></div></td></tr>
   <tr><th colspan="2">operations</td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>&&, ||, !</pre></div></td><td><div class="highlight highlight-source-scala"><pre>&&, ||, !</pre></div></td></tr>
@@ -243,8 +245,11 @@ or
   <tr><th colspan="2">io</td></tr>
   <tr><th colspan="2">writing to files or standard error is the same<td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>System.out.println("hi");</pre></div></td><td><div class="highlight highlight-source-scala"><pre>System.out.println("hi")</pre></div>or<div class="highlight highlight-source-scala"><pre>println("hi")</pre></div></td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>new BufferedReader(new InputStreamReader(System.in)).readLine();</pre></div></td><td><div class="highlight highlight-source-scala"><pre>io.StdIn.readLine()</pre></div></td></tr>
-  <tr><td><div class="highlight highlight-source-java"><pre>for (String line: Files.newBufferedReader(Paths.get("file")).lines().iterator()) {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>for (line <- Files.newBufferedReader(Paths.get("file")).lines.iterator) {}</pre></div>
+  <tr><td><div class="highlight highlight-source-java"><pre>InputStreamReader reader = new InputStreamReader(System.in);
+  new BufferedReader(reader).readLine();</pre></div></td><td><div class="highlight highlight-source-scala"><pre>io.StdIn.readLine()</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>Path path = Paths.get("file");
+BufferedReader reader = Files.newBufferedReader(path)
+for (String line: reader.lines().iterator()) {}</pre></div></td><td><div class="highlight highlight-source-scala"><pre>for (line <- Files.newBufferedReader(Paths.get("file")).lines.iterator) {}</pre></div>
 or
 <div class="highlight highlight-source-scala"><pre>for (line <- io.Source.fromFile("file").getLines()) {}</pre></div></td></tr>
   <tr><th colspan="2">singleton</td></tr>
