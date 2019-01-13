@@ -318,4 +318,72 @@ object Instance extends S</pre></div></td></tr>
 </pre></div></td><td><div class="highlight highlight-source-scala"><pre>class Number(val i: Int)
 
 object Zero extends Number(0)</pre></div></td></tr>
+  <tr><th colspan="2"><code>for</code> syntax</td></tr>
+  <tr><td>
+  Classic Java
+  <div class="highlight highlight-source-java"><pre>static List&lt;Integer&gt; duplicate(int i) {
+    return Arrays.asList(i, i);
+}
+
+List<Integer> is = Arrays.asList(1,2,3);
+List<Integer> js = Arrays.asList(4,5,6);
+
+List<Integer> duplicateSums = new ArrayList<>();
+
+for (int i: is) {
+    for (int j : js) {
+        for (int duplicated : duplicate(i + j)) {
+            duplicateSums.add(duplicated);
+        }
+    }
+}
+
+return duplicateSums;
+</pre></div>
+
+Java Streams
+<div class="highlight highlight-source-java"><pre>
+static IntStream duplicate(int i) {
+    return IntStream.of(i, i);
+}
+
+IntStream is = IntStream.of(1,2,3);
+IntStream js = IntStream.of(4,5,6);
+IntStream duplicateSums =
+    is.flatMap(i ->
+      js.flatMap(j ->
+        duplicate(i + j)
+      )
+    );
+
+return duplicateSums.boxed().collect(Collectors.toList());
+</pre></div>
+</td><td><div class="highlight highlight-source-scala"><pre>def duplicate(i: Int): Seq[Int] = Seq(i, i)
+val is = Seq(1,2,3)
+val js = Seq(4,5,6)
+for {
+  i <- is
+  j <- js
+  duplicated <- duplicate(i + j)
+} yield duplicated
+</pre></div></td></tr>
+  <tr><td><div class="highlight highlight-source-java"><pre>ListenableFuture&lt;Integer&gt; future0;
+ListenableFuture&lt;Integer&gt; future1;
+
+// Add the results of two futures.
+return Futures.transformAsync(
+    future0,
+    value0 ->
+        Futures.transform(
+            future1,
+            value1 -> value0 + value1
+        )
+);</pre></div></td><td><div class="highlight highlight-source-scala"><pre>val future0: Future[Int]
+val future1: Future[Int]
+
+// Add the results of two futures.
+for {
+value0 <- future0
+value1 <- future1
+} yield value0 + value1</pre></div></td></tr>
 </table>
