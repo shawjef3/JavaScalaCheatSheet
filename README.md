@@ -66,7 +66,6 @@ is shorthand for
   val i: Int = 3
 }</pre></td></tr>
   <tr><th colspan="2">methods</td></tr>
-  <tr><th colspan="2">declaration</td></tr>
   <tr><td><pre>void f(int i) {}</pre></td><td><pre>def f(i: Int): Unit = {}</pre>
   or
 <pre>def f(i: Int): Unit = ()</pre></td></tr>
@@ -303,6 +302,9 @@ or
   <tr><td>☹</td><td><pre>def triple[T: ClassTag](): Array[T] = {
   Array.ofDim[T](3)
 }</pre></td></tr>
+  <tr><td><pre>int[] ints;
+int thirdInt = int[3];</pre></td><td><pre>val ints: Array[Int]
+val thirdInt = ints(3)</pre></td></tr>
   <tr><th colspan="2">operations</td></tr>
   <tr><td><pre>&&, ||, !</pre></td><td><pre>&&, ||, !</pre></td></tr>
   <tr><td><pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
