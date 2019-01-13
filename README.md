@@ -305,8 +305,9 @@ int thirdInt = int[3];</pre></td><td><pre>val ints: Array[Int]
 val thirdInt = ints(3)</pre></td></tr>
   <tr><th colspan="2">operations</td></tr>
   <tr><td><pre>&&, ||, !</pre></td><td><pre>&&, ||, !</pre></td></tr>
-  <tr><td><pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
-  <tr><td><pre>Object#equals(Object)</pre></td><td><pre>==, !=</pre></td></tr>
+  <tr><td>for primitives<pre>==, !=</pre></td><td><pre>==, !=</pre></td></tr>
+  <tr><td>for references<pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
+  <tr><td>for references<pre>.equals</pre></td><td><pre>==, !=</pre></td></tr>
   <tr><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td><td><pre>&lt;, &gt;, &lt;=, &gt;=</pre></td></tr>
   <tr><td><pre>+, -, *, /, %</pre></td><td><pre>+, -, *, /, %</pre></td></tr>
   <tr><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</pre></td><td><pre>&, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</pre></td></tr>
