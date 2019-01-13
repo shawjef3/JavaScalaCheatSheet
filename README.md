@@ -294,7 +294,7 @@ for (int i=0; i<3; i++) {
 }</pre>
 or
 <pre>IntStream.range(0, 3)
-  .mapToObj(Integer::toString)
+  .boxed()
   .toArray();</pre>
 </td><td><pre>var intStrings = Array.tabulate(3)(_.toString)</pre></td></tr>
   <tr><td>☹</td><td><pre>def triple[T: ClassTag](): Array[T] = {
