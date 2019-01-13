@@ -65,6 +65,13 @@ is shorthand for
   or
 <pre>def f(i: Int): Unit = ()</pre></td></tr>
   <tr><td><pre>int f(int i) {return i;}</pre></td><td><pre>def f(i: Int): Int = i</pre></td></tr>
+  <tr><td><pre>int f(int i...) {return Arrays.stream(i).sum();}
+f(1,2,3);
+int[] ints;
+f(ints);</pre></td><td><pre>def f(i: Int*): Int = i.sum
+f(1,2,3)
+val ints: Array[Int]
+f(ints: _*)</pre></td></tr>
   <tr><th colspan="2">statics</td></tr>
   <tr><td><pre>class C {
     static int i = 0;
