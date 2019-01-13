@@ -1,8 +1,13 @@
-# Java/Scala Cheat Sheet
+# Java and Scala Comparison Cheat Sheet
 
 ## Introduction
 
-This is intended as a reference to help people fluent in Java or Scala to become minimally fluent in the other. It is not intended as a best practices guide or style guide.
+This is a reference to help people fluent in Java or Scala to become fluent in the other. I was inspired by the [C# and VB.NET Comparison Cheat Sheet](http://aspalliance.com/625).
+
+## Other Cheat Sheets
+
+https://www.rea-group.com/blog/java-to-scala-cheatsheet/  
+http://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Java%20to%20Scala.html
 
 ## Cheat Sheet
 
@@ -65,13 +70,12 @@ is shorthand for
   or
 <pre>def f(i: Int): Unit = ()</pre></td></tr>
   <tr><td><pre>int f(int i) {return i;}</pre></td><td><pre>def f(i: Int): Int = i</pre></td></tr>
-  <tr><td><pre>int f(int i...) {return Arrays.stream(i).sum();}
-f(1,2,3);
-int[] ints;
-f(ints);</pre></td><td><pre>def f(i: Int*): Int = i.sum
-f(1,2,3)
-val ints: Array[Int]
+  <tr><td><pre>int f(int ints...) {return Arrays.stream(ints).sum();}</pre></td><td><pre>def f(ints: Int*): Int = ints.sum</pre></td></tr>
+  <tr><td><pre>f(1,2,3);</pre></td><td><pre>f(1,2,3)</pre></td></tr>
+  <tr><td><pre>int[] ints;
+f(ints);</pre></td><td><pre>val ints: Array[Int]
 f(ints: _*)</pre></td></tr>
+  <tr><td><pre>&lt;T, U&gt; U f(T arg);</pre></td><td><pre>def f[T, U](arg: T): U</pre></td></tr>
   <tr><th colspan="2">statics</td></tr>
   <tr><td><pre>class C {
     static int i = 0;
@@ -293,6 +297,9 @@ or
   .mapToObj(Integer::toString)
   .toArray();</pre>
 </td><td><pre>var intStrings = Array.tabulate(3)(_.toString)</pre></td></tr>
+  <tr><td>☹</td><td><pre>def triple[T: ClassTag](): Array[T] = {
+  Array.ofDim[T](3)
+}</pre></td></tr>
   <tr><th colspan="2">operations</td></tr>
   <tr><td><pre>&&, ||, !</pre></td><td><pre>&&, ||, !</pre></td></tr>
   <tr><td><pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
@@ -313,9 +320,10 @@ or
 new BufferedReader(reader).readLine();</pre></td><td><pre>io.StdIn.readLine()</pre></td></tr>
   <tr><td><pre>Path path = Paths.get("file");
 BufferedReader reader = Files.newBufferedReader(path);
-for (String line: reader.lines().iterator()) {}</pre></td><td><pre>val path = Paths.get("file")
+for (String line: reader.lines().iterator()) {}</pre></td><td><pre>import scala.collection.JavaConverters._
+val path = Paths.get("file")
 val reader = Files.newBufferedReader(path)
-for (line <- reader.lines.iterator) {}</pre>
+for (line <- reader.lines.iterator.asScala) {}</pre>
 or
 <pre>val source = io.Source.fromFile("file")
 for (line <- source.getLines()) {}</pre></td></tr>
@@ -415,4 +423,45 @@ for {
 value0 <- future0
 value1 <- future1
 } yield value0 + value1</pre></td></tr>
+  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></th></tr>>
+  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collection conversions</a></th></tr>
+  <tr><td><pre>class Integers {
+  public static java.util.List&lt;Integer&gt; list;
+}</pre></td><td><pre>
+import scala.collection.JavaConverters._
+val list: Seq[Integer] = Integers.list.asScala</pre></td></tr>
+   <tr><td><pre>import scala.collection.JavaConverters;
+Collection&lt;String&gt; list =
+   JavaConverters.asJavaCollection(Strings.list());</pre></td><td><pre>object Strings {
+  val list: Seq[String] = Seq("hi")
+}</pre></td></tr>
+   <tr><td><pre>// Java can't handle collections of primitives.
+import scala.collection.JavaConverters;
+Collection&lt;Object&gt; list =
+  JavaConverters.asJavaCollection(Integers.list());</pre></td><td><pre>object Integers {
+  val list: Seq[Int] = Seq(1)
+}</pre></td></tr>
+  <tr><th colspan="2">lambdas</th></tr>
+  <tr><td><pre>Function&lt;Integer, String&gt; toString =
+  i -> i.toString();</pre></td><td><pre>val toString: Integer => String =
+  i => i.toString</pre></td></tr>
+  <tr><td><pre>Function&lt;Integer, String&gt; toString =
+  Object::toString;</pre></td><td><pre>val toString: Int => String =
+  _.toString</pre></td></tr>
+  <tr><td><pre>IntFunction&lt;String&gt; toString =
+  Integer::toString;</pre></td><td><pre>val toString: Int => String =
+  i => i.toString</pre></td></tr>
+  <tr><td><pre>Consumer&lt;String&gt; print =
+  System.out::println;</pre></td><td><pre>val print: String => Unit =
+  println</pre></td></tr>
+  <tr><td><pre>IntConsumer print =
+  System.out::println;</pre></td><td><pre>val print: Int => Unit =
+  println</pre></td></tr>
+  <tr><td><pre>Supplier&lt;Integer&gt; read =
+  () -> 3;</pre></td><td><pre>val read: Unit -> Integer =
+  () => 3</pre></td></tr>
+  <tr><td><pre>IntSupplier read =
+  () -> 3;</pre></td><td><pre>val read: Unit -> Int =
+  () => 3</pre></td></tr>
+  <tr><td><pre></pre></td><td><pre></pre></td></tr>
 </table>
