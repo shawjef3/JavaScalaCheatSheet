@@ -273,7 +273,7 @@ or
   <tr><td><div class="highlight highlight-source-java"><pre>++, --</pre></div></td><td></td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>?:</pre></div>
   example
-<code class="java">int i = test ? 0 : 1;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var i = if (test) 0 else 1</pre></div></td></tr>
+<div class="highlight highlight-source-java"><pre>int i = test ? 0 : 1;</pre></div></td><td><div class="highlight highlight-source-scala"><pre>var i = if (test) 0 else 1</pre></div></td></tr>
   <tr><th colspan="2">io</td></tr>
   <tr><th colspan="2">writing to files or standard error is the same<td></tr>
   <tr><td><div class="highlight highlight-source-java"><pre>System.out.println("hi");</pre></div></td><td><div class="highlight highlight-source-scala"><pre>System.out.println("hi")</pre></div>or<div class="highlight highlight-source-scala"><pre>println("hi")</pre></div></td></tr>
