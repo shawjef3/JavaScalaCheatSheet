@@ -325,10 +325,10 @@ object Zero extends Number(0)</pre></div></td></tr>
     return Arrays.asList(i, i);
 }
 
-List<Integer> is = Arrays.asList(1,2,3);
-List<Integer> js = Arrays.asList(4,5,6);
+List&lt;Integer&gt; is = Arrays.asList(1,2,3);
+List&lt;Integer&gt; js = Arrays.asList(4,5,6);
 
-List<Integer> duplicateSums = new ArrayList<>();
+List&lt;Integer&gt; duplicateSums = new ArrayList&lt;&gt;();
 
 for (int i: is) {
     for (int j : js) {
