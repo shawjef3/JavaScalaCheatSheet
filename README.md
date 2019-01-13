@@ -238,7 +238,7 @@ value match {
 } finally {}</pre></td></tr>
   <tr><th colspan="2">try-with-resources</td></tr>
   <tr><td><pre>try (InputStream i0 = new InputStream();
-                    InputStream i1 = new InputStream()) {
+     InputStream i1 = new InputStream()) {
 }</pre></td><td>☹</td></tr>
   <tr><th colspan="2">data types</td></tr>
   <tr><td><pre>void</pre></td><td><pre>Unit</pre></td></tr>
