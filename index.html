@@ -83,7 +83,7 @@ is shorthand for
   <tr><th colspan="2">methods</th></tr>
   <tr><td><pre><code class="language-java">void f(int i) {}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Unit = {}</code></pre>
   or
-<pre><code class="language-java">def f(i: Int): Unit = ()</code></pre></td></tr>
+<pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int f(int i) {return i;}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Int = i</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int f(int ints...) {return Arrays.stream(ints).sum();}</code></pre></td><td><pre><code class="language-scala">def f(ints: Int*): Int = ints.sum</code></pre></td></tr>
   <tr><td><pre><code class="language-java">f(1,2,3);</code></pre></td><td><pre><code class="language-scala">f(1,2,3)</code></pre></td></tr>
@@ -128,64 +128,64 @@ class C {
   <tr><td><pre><code class="language-java">void f(final int i) {}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
 <tr><th colspan="2">immutable data structure</th></tr>
   <tr><td><pre><code class="language-java">public class C implements Serializable {
-    private final int c;
+  private final int c;
 
-    public C(int c) {
-        this.c = c;
-    }
+  public C(int c) {
+    this.c = c;
+  }
 
-    public int getC() {
-        return c;
-    }
+  public int getC() {
+    return c;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        C c1 = (C) o;
-        return getC() == c1.getC();
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    C c1 = (C) o;
+    return getC() == c1.getC();
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getC());
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(getC());
+  }
 }
 </code></pre></td><td><pre><code class="language-scala">case class C(c: Int)</code></pre></td></tr>
   <tr><th colspan="2">bean / mutable data structure</th></tr>
   <tr><td><pre><code class="language-java">public class C implements Serializable {
-    private int c;
+  private int c;
 
-    public C() {}
+  public C() {}
 
-    public int getC() {
-        return c;
+  public int getC() {
+    return c;
+  }
+
+  public void setC(int c) {
+    this.c = c;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public void setC(int c) {
-        this.c = c;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    C c1 = (C) o;
+    return getC() == c1.getC();
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        C c1 = (C) o;
-        return getC() == c1.getC();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getC());
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(getC());
+  }
 }</code></pre></td><td><pre><code class="language-scala">case class C(
   @BeanProperty var c: Int
 ) {
@@ -354,14 +354,14 @@ or
 for (line &lt;- source.getLines()) {}</code></pre></td></tr>
   <tr><th colspan="2">singleton</th></tr>
   <tr><td><pre><code class="language-java">public class S {
-    private static S ourInstance = new S();
+  private static S ourInstance = new S();
 
-    public static S getInstance() {
-        return ourInstance;
-    }
+  public static S getInstance() {
+    return ourInstance;
+  }
 
-    private S() {
-    }
+  private S() {
+  }
 }</code></pre></td><td><pre><code class="language-scala">class S
 
 object Instance extends S</code></pre>
@@ -372,18 +372,17 @@ object S {
   val instance = new S
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">public class Number {
+  private int i;
 
-    private int i;
+  private static Number ourZero = new Number(0);
 
-    private static Number ourZero = new Number(0);
+  public static Number getZero() {
+    return ourZero;
+  }
 
-    public static Number getZero() {
-        return ourZero;
-    }
-
-    public Number(int i) {
-        this.i = i;
-    }
+  public Number(int i) {
+    this.i = i;
+  }
 }
 </code></pre></td><td><pre><code class="language-scala">class Number(val i: Int)
 
@@ -392,7 +391,7 @@ object Zero extends Number(0)</code></pre></td></tr>
   <tr><td>
   Classic Java
   <pre><code class="language-java">static List&lt;Integer&gt; duplicate(int i) {
-    return Arrays.asList(i, i);
+  return Arrays.asList(i, i);
 }
 
 List&lt;Integer&gt; is = Arrays.asList(1,2,3);
@@ -413,7 +412,7 @@ return duplicateSums;
 
 Java Streams
 <pre><code class="language-java">static IntStream duplicate(int i) {
-    return IntStream.of(i, i);
+  return IntStream.of(i, i);
 }
 
 IntStream is = IntStream.of(1,2,3);
