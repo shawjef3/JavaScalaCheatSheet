@@ -76,7 +76,7 @@ is shorthand for
   <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A <: Comparable with Serializable]</code></pre></td></tr>
-  <tr><td>☹</td><td><pre><code class="language-java">class C[A &gt;: Nothing]</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-scala">class C[A &gt;: Nothing]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A <: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[-A]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[+A]</code></pre></td></tr>
