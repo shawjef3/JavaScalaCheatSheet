@@ -16,6 +16,9 @@ This is a reference to help people fluent in Java or Scala to become fluent in t
 <a href="https://www.rea-group.com/blog/java-to-scala-cheatsheet/">https://www.rea-group.com/blog/java-to-scala-cheatsheet/</a><br>
 <a href="http://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Java%20to%20Scala.html">http://www.cis.upenn.edu/~matuszek/Concise Guides/Concise Java to Scala.html</a>
 
+<h2>Source</h2>
+<a href="https://github.com/shawjef3/JavaScalaCheatSheet/">https://github.com/shawjef3/JavaScalaCheatSheet/</a>
+
 <h2>Cheat Sheet</h2>
 
 <p>Why is there a &gt; here?</p>
@@ -58,11 +61,6 @@ is shorthand for
     this.i = i
   }
 }</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A <: Comparable]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A <: Comparable with Serializable]</code></pre></td></tr>
-  <tr><td>☹</td><td><pre><code class="language-java">class C[-A]</code></pre></td></tr>
-  <tr><td>☹</td><td><pre><code class="language-java">class C[+A]</code></pre></td></tr>
   <tr><th colspan="2">interfaces</th></tr>
   <tr><td><pre><code class="language-java">interface I {}</code></pre></td><td><pre><code class="language-java">trait I</code></pre></td></tr>
   <tr><td><pre><code class="language-java">interface I&lt;A&gt; {}</code></pre></td><td><pre><code class="language-java">trait I[A]</code></pre></td></tr>
@@ -74,6 +72,14 @@ is shorthand for
   <tr><td>☹</td><td><pre><code class="language-java">trait I {
   val i: Int = 3
 }</code></pre></td></tr>
+  <tr><th colspan="2">generics</th></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A &lt;: Comparable]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A <: Comparable with Serializable]</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-java">class C[A &gt;: Nothing]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-java">class C[A <: Comparable with Serializable]</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-java">class C[-A]</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-java">class C[+A]</code></pre></td></tr>
   <tr><th colspan="2">methods</th></tr>
   <tr><td><pre><code class="language-java">void f(int i) {}</code></pre></td><td><pre><code class="language-java">def f(i: Int): Unit = {}</code></pre>
   or
@@ -85,6 +91,9 @@ is shorthand for
 f(ints);</code></pre></td><td><pre><code class="language-java">val ints: Array[Int]
 f(ints: _*)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">&lt;T, U&gt; U f(T arg);</code></pre></td><td><pre><code class="language-java">def f[T, U](arg: T): U</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">void f(List&lt;?&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_]): Unit</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">void f(List&lt;? extends A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &lt;: A]): Unit</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">void f(List&lt;? super A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &gt;: A]): Unit</code></pre></td></tr>
   <tr><th colspan="2">statics</th></tr>
   <tr><td><pre><code class="language-java">class C {
     static int i = 0;
