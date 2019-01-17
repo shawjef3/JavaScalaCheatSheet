@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Java and Scala Comparison Cheat Sheet</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="prism.css" data-noprefix />
   <script src="prism.js"></script> 
@@ -21,9 +23,7 @@ This is a reference to help people fluent in Java or Scala to become fluent in t
 
 <h2>Cheat Sheet</h2>
 
-<p>Why is there a &gt; here?</p>
-
-<table align="center">
+<table style="margin-left:auto; margin-right:auto;">
   <tr><th>Java</th><th>Scala</th></tr>
   <tr><th colspan="2">packages</th></tr>
   <tr><td><pre><code class="language-java">package me.jeffshaw;</code></pre></td><td><pre><code class="language-scala">package me.jeffshaw</code></pre></td></tr>
@@ -33,7 +33,7 @@ import me.jeffshaw.Class1;</code></pre></td><td><pre><code class="language-scala
 import me.jeffshaw.Class1</code></pre>
 or
 <pre><code class="language-scala">import me.jeffshaw.{Class0, Class1}</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">import me.jeffshaw.*;</code></pre></td><td><pre><code class="language-scala">import me.jeffshaw._</code></pre></code></pre></td></tr>
+  <tr><td><pre><code class="language-java">import me.jeffshaw.*;</code></pre></td><td><pre><code class="language-scala">import me.jeffshaw._</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">import me.jeffshaw.{Class =&gt; RenamedClass}</code></pre></td></tr>
   <tr><th colspan="2">classes</th></tr>
   <tr><td><pre><code class="language-java">class C {}</code></pre></td><td><pre><code class="language-scala">class C</code></pre></td></tr>
@@ -75,9 +75,9 @@ is shorthand for
   <tr><th colspan="2">generics</th></tr>
   <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A <: Comparable with Serializable]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[A &gt;: Nothing]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A <: Comparable with Serializable]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[-A]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[+A]</code></pre></td></tr>
   <tr><th colspan="2">methods</th></tr>
@@ -207,19 +207,19 @@ class C {
   doSomethingElse()
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int i = 0;
-while (i < 10) {
+while (i &lt; 10) {
   i++;
 }</code></pre></td><td><pre><code class="language-scala">var i = 0
-while (i < 10) {
+while (i &lt; 10) {
   i += 1
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int i = 0;
 do {
   i++;
-} while (i < 10)</code></pre></td><td><pre><code class="language-scala">var i = 0
+} while (i &lt; 10)</code></pre></td><td><pre><code class="language-scala">var i = 0
 do {
   i += 1
-} while (i < 10)</code></pre></td></tr>
+} while (i &lt; 10)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">for (int i: collection) {}</code></pre></td><td><pre><code class="language-scala">for (i &lt;- collection) {}</code></pre></td></tr>
   <tr><td><pre><code class="language-java">for (int i: collection) {
   for (int j: otherCollection) {}
@@ -301,13 +301,13 @@ value match {
 )</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[] ints = new int[3];</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[][] ints = new int[3];
-for (int i=0; i<3; i++) {
+for (int i=0; i&lt;3; i++) {
   ints[i] = new int[3]; 
 }</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3, 3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[] ints = new int[3];
 Arrays.fill(ints, 0);</code></pre></td><td><pre><code class="language-scala">var ints = Array.fill(3)(0)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">String[] intStrings = new String[3];
-for (int i=0; i<3; i++) {
+for (int i=0; i&lt;3; i++) {
   intStrings[i] = Integer.toString(i);
 }</code></pre>
 or
@@ -453,7 +453,7 @@ for {
   value0 &lt;- future0
   value1 &lt;- future1
 } yield value0 + value1</code></pre></td></tr>
-  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></th></tr>>
+  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></th></tr>
   <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collection conversions</a></th></tr>
   <tr><td><pre><code class="language-java">class Integers {
   public static java.util.List&lt;Integer&gt; list;
