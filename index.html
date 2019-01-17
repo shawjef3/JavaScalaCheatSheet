@@ -56,7 +56,11 @@ or
 }</code></pre></td><td><pre><code class="language-scala">class C(var i: Int)</code></pre></td></tr>
   <tr><th colspan="2">interfaces</th></tr>
   <tr><td><pre><code class="language-java">interface I {}</code></pre></td><td><pre><code class="language-scala">trait I</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">interface I&lt;A&gt; {}</code></pre></td><td><pre><code class="language-scala">trait I[A]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">interface I {
+  void method(int i);
+}</code></pre></td><td><pre><code class="language-scala">trait I {
+  def method(i: Int): Unit
+}</code></pre></td></tr>
   <tr><td><pre><code class="language-java">interface I {
   void method(int i) {}
 }</code></pre></td><td><pre><code class="language-scala">trait I {
@@ -65,12 +69,11 @@ or
   <tr><td>☹</td><td><pre><code class="language-scala">trait I {
   val i: Int = 3
 }</code></pre></td></tr>
-  <tr><th colspan="2">generics</th></tr>
+  <tr><th colspan="2">class and interface generics</th></tr>
   <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable &amp; Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[A &gt;: Nothing]</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">class C&lt;A extends Comparable, Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[-A]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[+A]</code></pre></td></tr>
   <tr><th colspan="2">methods</th></tr>
@@ -108,10 +111,12 @@ f(ints: _*)</code></pre></td></tr>
 class C {
   private[a] var i: Int
 }</code></pre></td></tr>
-  <tr><th colspan="2">public</th></tr>
-  <tr><td><pre><code class="language-java">public int i;</code></pre></td><td><pre><code class="language-scala">var i: Int</code></pre></td></tr>
+  <tr><th colspan="2">instance private</th></tr>
+  <tr><td>☹</td><td><pre><code class="language-scala">private[this] var i: Int</code></pre></td></tr>
   <tr><th colspan="2">protected</th></tr>
   <tr><td><pre><code class="language-java">protected int i;</code></pre></td><td><pre><code class="language-scala">protected var i: Int</code></pre></td></tr>
+  <tr><th colspan="2">public</th></tr>
+  <tr><td><pre><code class="language-java">public int i;</code></pre></td><td><pre><code class="language-scala">var i: Int</code></pre></td></tr>
   <tr><th colspan="2">mutability</th></tr>
   <tr><td><pre><code class="language-java">int i;</code></pre></td><td><pre><code class="language-scala">var i: Int</code></pre></td></tr>
   <tr><td><pre><code class="language-java">final int i;</code></pre></td><td><pre><code class="language-scala">val i: Int</code></pre></td></tr>
@@ -282,6 +287,9 @@ value match {
   <tr><th colspan="2">null</th></tr>
   <tr><td><pre><code class="language-java">null</code></pre></td><td><pre><code class="language-scala">null</code></pre></td></tr>
   <tr><th colspan="2">arrays</th></tr>
+  <tr><td><pre><code class="language-java">int[] ints;
+int thirdInt = int[2];</code></pre></td><td><pre><code class="language-scala">var ints: Array[Int]
+var thirdInt = ints(2)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[] ints = new int[] {1,2,3};</code></pre></td><td><pre><code class="language-scala">var ints = Array(1,2,3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[][] ints = new int[][] {
   {1,2,3},
@@ -311,9 +319,6 @@ or
   <tr><td>☹</td><td><pre><code class="language-scala">def triple[T: ClassTag](): Array[T] = {
   Array.ofDim[T](3)
 }</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[] ints;
-int thirdInt = int[3];</code></pre></td><td><pre><code class="language-scala">val ints: Array[Int]
-val thirdInt = ints(3)</code></pre></td></tr>
   <tr><th colspan="2">equality operations</th></tr>
   <tr><th colspan="2">for primitives</th></tr>
   <tr><td><pre><code class="language-java">==, !=</code></pre></td><td><pre><code class="language-scala">==, !=</code></pre></td></tr>
@@ -427,17 +432,12 @@ for {
   duplicated &lt;- duplicate(i + j)
 } yield duplicated
 </code></pre></td></tr>
-  <tr><td><pre><code class="language-java">ListenableFuture&lt;Integer&gt; future0;
-ListenableFuture&lt;Integer&gt; future1;
+  <tr><td><pre><code class="language-java">CompletableFuture&lt;Integer&gt; future0;
+CompletableFuture&lt;Integer&gt; future1;
 
 // Add the results of two futures.
-return Futures.transformAsync(
-  future0,
-  value0 -&gt;
-    Futures.transform(
-      future1,
-      value1 -&gt; value0 + value1
-    )
+return future0.thenCompose(value0 -&gt;
+  future1.thenApply(value1 -&gt; value0 + value1)
 );</code></pre></td><td><pre><code class="language-scala">val future0: Future[Int]
 val future1: Future[Int]
 
