@@ -96,14 +96,14 @@ f(ints: _*)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(List&lt;? super A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &gt;: A]): Unit</code></pre></td></tr>
   <tr><th colspan="2">statics</th></tr>
   <tr><td><pre><code class="language-java">class C {
-    static int i = 0;
+  static int i = 0;
 }</code></pre></td><td><pre><code class="language-scala">object C {
   var i = 0
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C {
-    static int f(int i) {
-        return i + 1;
-    }
+  static int f(int i) {
+    return i + 1;
+  }
 }</code></pre></td><td><pre><code class="language-scala">object C {
   def f(i: Int): Int = i + 1
 }</code></pre></td></tr>
