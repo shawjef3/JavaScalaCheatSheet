@@ -13,7 +13,7 @@ http://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Java%20to%20Scala.
 
 <table align="center">
   <tr><th>Java</th><th>Scala</th></tr>
-  <tr><th colspan="2">packages</td></tr>
+  <tr><th colspan="2">packages</th></tr>
   <tr><td><pre>package me.jeffshaw;</pre></td><td><pre>package me.jeffshaw</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.Class;</pre></td><td><pre>import me.jeffshaw.Class</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.Class0;
@@ -23,7 +23,7 @@ or
 <pre>import me.jeffshaw.{Class0, Class1}</pre></td></tr>
   <tr><td><pre>import me.jeffshaw.*;</pre></td><td><pre>import me.jeffshaw._</pre></pre></td></tr>
   <tr><td>☹</td><td><pre>import me.jeffshaw.{Class =&gt; RenamedClass}</pre></td></tr>
-  <tr><th colspan="2">classes</td></tr>
+  <tr><th colspan="2">classes</th></tr>
   <tr><td><pre>class C {}</pre></td><td><pre>class C</pre></td></tr>
   <tr><td><pre>class C {
   public int i;
@@ -54,7 +54,7 @@ is shorthand for
   <tr><td><pre>class C&lt;A extends Comparable, Serializable&gt; {}</pre></td><td><pre>class C[A <: Comparable with Serializable]</pre></td></tr>
   <tr><td>☹</td><td><pre>class C[-A]</pre></td></tr>
   <tr><td>☹</td><td><pre>class C[+A]</pre></td></tr>
-  <tr><th colspan="2">interfaces</td></tr>
+  <tr><th colspan="2">interfaces</th></tr>
   <tr><td><pre>interface I {}</pre></td><td><pre>trait I {}</pre></td></tr>
   <tr><td><pre>interface I&lt;A&gt; {}</pre></td><td><pre>trait I[A] {}</pre></td></tr>
   <tr><td><pre>interface I {
@@ -65,7 +65,7 @@ is shorthand for
   <tr><td>☹</td><td><pre>trait I {
   val i: Int = 3
 }</pre></td></tr>
-  <tr><th colspan="2">methods</td></tr>
+  <tr><th colspan="2">methods</th></tr>
   <tr><td><pre>void f(int i) {}</pre></td><td><pre>def f(i: Int): Unit = {}</pre>
   or
 <pre>def f(i: Int): Unit = ()</pre></td></tr>
@@ -76,7 +76,7 @@ is shorthand for
 f(ints);</pre></td><td><pre>val ints: Array[Int]
 f(ints: _*)</pre></td></tr>
   <tr><td><pre>&lt;T, U&gt; U f(T arg);</pre></td><td><pre>def f[T, U](arg: T): U</pre></td></tr>
-  <tr><th colspan="2">statics</td></tr>
+  <tr><th colspan="2">statics</th></tr>
   <tr><td><pre>class C {
     static int i = 0;
 }</pre></td><td><pre>object C {
@@ -89,26 +89,26 @@ f(ints: _*)</pre></td></tr>
 }</pre></td><td><pre>object C {
   def f(i: Int): Int = i + 1
 }</pre></td></tr>
-  <tr><th colspan="2">member access permissions</td></tr>
-  <tr><th colspan="2">private</td></tr>
+  <tr><th colspan="2">member access permissions</th></tr>
+  <tr><th colspan="2">private</th></tr>
   <tr><td><pre>private int i;</pre></td><td><pre>private var i: Int</pre></td></tr>
-  <tr><th colspan="2">package private</td></tr>
+  <tr><th colspan="2">package private</th></tr>
   <tr><td><pre>int i;</pre></td><td><pre>package a
 class C {
   private[a] var i: Int
 }</pre></td></tr>
-  <tr><th colspan="2">public</td></tr>
+  <tr><th colspan="2">public</th></tr>
   <tr><td><pre>public int i;</pre></td><td><pre>var i: Int</pre></td></tr>
-  <tr><th colspan="2">protected</td></tr>
+  <tr><th colspan="2">protected</th></tr>
   <tr><td><pre>protected int i;</pre></td><td><pre>protected var i: Int</pre></td></tr>
-  <tr><th colspan="2">mutability</td></tr>
+  <tr><th colspan="2">mutability</th></tr>
   <tr><td><pre>int i;</pre></td><td><pre>var i: Int</pre></td></tr>
   <tr><td><pre>final int i;</pre></td><td><pre>val i: Int</pre></td></tr>
   <tr><td><pre>void f(int i) {
   i = 4;
 }</pre></td><td>☹</td></tr>
   <tr><td><pre>void f(final int i) {}</pre></td><td><pre>def f(i: Int): Unit = ()</pre></td></tr>
-<tr><th colspan="2">immutable data structure</td></tr>
+<tr><th colspan="2">immutable data structure</th></tr>
   <tr><td><pre>public class C implements Serializable {
     private final int c;
 
@@ -138,7 +138,7 @@ class C {
     }
 }
 </pre></td><td><pre>case class C(c: Int)</pre></td></tr>
-  <tr><th colspan="2">bean / mutable data structure</td></tr>
+  <tr><th colspan="2">bean / mutable data structure</th></tr>
   <tr><td><pre>public class C implements Serializable {
     private int c;
 
@@ -175,7 +175,7 @@ class C {
     this(0)
   }
 }</pre></td></tr>
-  <tr><th colspan="2">control structures</td></tr>
+  <tr><th colspan="2">control structures</th></tr>
   <tr><td><pre>return;</pre></td><td><pre>()</pre></td></tr>
   <tr><td><pre>return 0;</pre></td><td><pre>0</pre></td></tr>
   <tr><td><pre>return test ? 0 : 1;</pre></td><td><pre>if (test) 0 else 1</pre></td></tr>
@@ -242,7 +242,7 @@ value match {
   case _ =&gt;
     val i = 0;
 }</pre></td></tr>
-  <tr><th colspan="2">exceptions</td></tr>
+  <tr><th colspan="2">exceptions</th></tr>
   <tr><td><pre>throw new Exception();</pre></td><td><pre>throw new Exception()</pre></td></tr>
   <tr><td><pre>try {
 } catch (IOException e) {
@@ -252,11 +252,11 @@ value match {
     case e: IOException =&gt;
     case e: RuntimeException =&gt;
 } finally {}</pre></td></tr>
-  <tr><th colspan="2">try-with-resources</td></tr>
+  <tr><th colspan="2">try-with-resources</th></tr>
   <tr><td><pre>try (InputStream i0 = new InputStream();
      InputStream i1 = new InputStream()) {
 }</pre></td><td>☹</td></tr>
-  <tr><th colspan="2">data types</td></tr>
+  <tr><th colspan="2">data types</th></tr>
   <tr><td><pre>void</pre></td><td><pre>Unit</pre></td></tr>
   <tr><td><pre>bool</pre></td><td><pre>Boolean</pre></td></tr>
   <tr><td><pre>byte</pre></td><td><pre>Byte</pre></td></tr>
@@ -268,9 +268,9 @@ value match {
   <tr><td><pre>Object</pre></td><td><pre>AnyRef</pre></td></tr>
   <tr><td>☹</td><td><pre>Any</pre></td></tr>
   <tr><td>☹</td><td><pre>AnyVal</pre></td></tr>
-  <tr><th colspan="2">null</td></tr>
+  <tr><th colspan="2">null</th></tr>
   <tr><td><pre>null</pre></td><td><pre>null</pre></td></tr>
-  <tr><th colspan="2">arrays</td></tr>
+  <tr><th colspan="2">arrays</th></tr>
   <tr><td><pre>int[] ints = new int[] {1,2,3};</pre></td><td><pre>var ints = Array(1,2,3)</pre></td></tr>
   <tr><td><pre>int[][] ints = new int[][] {
   {1,2,3},
@@ -303,7 +303,7 @@ or
   <tr><td><pre>int[] ints;
 int thirdInt = int[3];</pre></td><td><pre>val ints: Array[Int]
 val thirdInt = ints(3)</pre></td></tr>
-  <tr><th colspan="2">operations</td></tr>
+  <tr><th colspan="2">operations</th></tr>
   <tr><td><pre>&amp;&amp;, ||, !</pre></td><td><pre>&amp;&amp;, ||, !</pre></td></tr>
   <tr><td>for primitives<pre>==, !=</pre></td><td><pre>==, !=</pre></td></tr>
   <tr><td>for references<pre>==, !=</pre></td><td><pre>eq, ne</pre></td></tr>
@@ -316,7 +316,7 @@ val thirdInt = ints(3)</pre></td></tr>
   <tr><td><pre>?:</pre>
   example
 <pre>int i = test ? 0 : 1;</pre></td><td><pre>var i = if (test) 0 else 1</pre></td></tr>
-  <tr><th colspan="2">io</td></tr>
+  <tr><th colspan="2">io</th></tr>
   <tr><td colspan="2">writing to files or standard error is the same</td></tr>
   <tr><td><pre>System.out.println("hi");</pre></td><td><pre>System.out.println("hi")</pre>or<pre>println("hi")</pre></td></tr>
   <tr><td><pre>InputStreamReader reader =
@@ -331,7 +331,7 @@ for (line &lt;- reader.lines.iterator.asScala) {}</pre>
 or
 <pre>val source = io.Source.fromFile("file")
 for (line &lt;- source.getLines()) {}</pre></td></tr>
-  <tr><th colspan="2">singleton</td></tr>
+  <tr><th colspan="2">singleton</th></tr>
   <tr><td><pre>public class S {
     private static S ourInstance = new S();
 
@@ -361,7 +361,7 @@ object Instance extends S</pre></td></tr>
 </pre></td><td><pre>class Number(val i: Int)
 
 object Zero extends Number(0)</pre></td></tr>
-  <tr><th colspan="2"><code>for</code> syntax</td></tr>
+  <tr><th colspan="2"><code>for</code> syntax</th></tr>
   <tr><td>
   Classic Java
   <pre>static List&lt;Integer&gt; duplicate(int i) {
@@ -480,6 +480,6 @@ print("hi")</pre></td></tr>
   <tr><td><pre>Supplier&lt;Integer&gt; read;
   read.get();</pre></td><td><pre>val read: Unit =&gt; Integer
 read()</pre></td></tr>
-   <tr><th colspan="2"></th></tr
+   <tr><th colspan="2"></th></tr>
   <tr><td><pre></pre></td><td><pre></pre></td></tr>
 </table>
