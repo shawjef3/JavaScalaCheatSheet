@@ -23,9 +23,9 @@ This is a reference to help people fluent in Java or Scala to become fluent in t
 
 <h2>Cheat Sheet</h2>
 
+<h3 style="text-align: center;">packages</h3>
 <table style="margin-left:auto; margin-right:auto;">
-  <tr><th>Java</th><th>Scala</th></tr>
-  <tr><th colspan="2">packages</th></tr>
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">package me.jeffshaw;</code></pre></td><td><pre><code class="language-scala">package me.jeffshaw</code></pre></td></tr>
   <tr><td><pre><code class="language-java">import me.jeffshaw.Class;</code></pre></td><td><pre><code class="language-scala">import me.jeffshaw.Class</code></pre></td></tr>
   <tr><td><pre><code class="language-java">import me.jeffshaw.Class0;
@@ -35,7 +35,10 @@ or
 <pre><code class="language-scala">import me.jeffshaw.{Class0, Class1}</code></pre></td></tr>
   <tr><td><pre><code class="language-java">import me.jeffshaw.*;</code></pre></td><td><pre><code class="language-scala">import me.jeffshaw._</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">import me.jeffshaw.{Class =&gt; RenamedClass}</code></pre></td></tr>
-  <tr><th colspan="2">classes</th></tr>
+  </table>
+<h3 style="text-align: center;">classes</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">class C {}</code></pre></td><td><pre><code class="language-scala">class C</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C {
   public int i;
@@ -54,7 +57,10 @@ or
     this.i = i;
   }
 }</code></pre></td><td><pre><code class="language-scala">class C(var i: Int)</code></pre></td></tr>
-  <tr><th colspan="2">interfaces</th></tr>
+  </table>
+<h3 style="text-align: center;">interfaces</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">interface I {}</code></pre></td><td><pre><code class="language-scala">trait I</code></pre></td></tr>
   <tr><td><pre><code class="language-java">interface I {
   void method(int i);
@@ -69,14 +75,20 @@ or
   <tr><td>☹</td><td><pre><code class="language-scala">trait I {
   val i: Int = 3
 }</code></pre></td></tr>
-  <tr><th colspan="2">class and interface generics</th></tr>
+  </table>
+<h3 style="text-align: center;">class and interface generics</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">class C&lt;A&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable]</code></pre></td></tr>
   <tr><td><pre><code class="language-java">class C&lt;A extends Comparable &amp; Serializable&gt; {}</code></pre></td><td><pre><code class="language-scala">class C[A &lt;: Comparable with Serializable]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[A &gt;: Nothing]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[-A]</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">class C[+A]</code></pre></td></tr>
-  <tr><th colspan="2">methods</th></tr>
+  </table>
+<h3 style="text-align: center;">methods</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">void f(int i) {}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Unit = {}</code></pre>
   or
 <pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
@@ -90,7 +102,10 @@ f(ints: _*)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(List&lt;?&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_]): Unit</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(List&lt;? extends A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &lt;: A]): Unit</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(List&lt;? super A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &gt;: A]): Unit</code></pre></td></tr>
-  <tr><th colspan="2">statics</th></tr>
+  </table>
+<h3 style="text-align: center;">statics</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">class C {
   static int i = 0;
 }</code></pre></td><td><pre><code class="language-scala">object C {
@@ -103,28 +118,49 @@ f(ints: _*)</code></pre></td></tr>
 }</code></pre></td><td><pre><code class="language-scala">object C {
   def f(i: Int): Int = i + 1
 }</code></pre></td></tr>
-  <tr><th colspan="2">member access permissions</th></tr>
-  <tr><th colspan="2">private</th></tr>
+  </table>
+<h3 style="text-align: center;">member access permissions</h3>
+<h4 style="text-align: center;">private</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">private int i;</code></pre></td><td><pre><code class="language-scala">private var i: Int</code></pre></td></tr>
-  <tr><th colspan="2">package private</th></tr>
+  </table>
+<h4 style="text-align: center;">package private</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">int i;</code></pre></td><td><pre><code class="language-scala">package a
 class C {
   private[a] var i: Int
 }</code></pre></td></tr>
-  <tr><th colspan="2">instance private</th></tr>
+  </table>
+<h4 style="text-align: center;">instance private</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">private[this] var i: Int</code></pre></td></tr>
-  <tr><th colspan="2">protected</th></tr>
+  </table>
+<h4 style="text-align: center;">protected</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">protected int i;</code></pre></td><td><pre><code class="language-scala">protected var i: Int</code></pre></td></tr>
-  <tr><th colspan="2">public</th></tr>
+  </table>
+<h4 style="text-align: center;">public</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">public int i;</code></pre></td><td><pre><code class="language-scala">var i: Int</code></pre></td></tr>
-  <tr><th colspan="2">mutability</th></tr>
+  </table>
+<h3 style="text-align: center;">mutability</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">int i;</code></pre></td><td><pre><code class="language-scala">var i: Int</code></pre></td></tr>
   <tr><td><pre><code class="language-java">final int i;</code></pre></td><td><pre><code class="language-scala">val i: Int</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(int i) {
   i = 4;
 }</code></pre></td><td>☹</td></tr>
   <tr><td><pre><code class="language-java">void f(final int i) {}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
-<tr><th colspan="2">immutable data structure</th></tr>
+</table>
+<h3 style="text-align: center;">immutable data structure</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">public class C implements Serializable {
   private final int c;
 
@@ -154,7 +190,10 @@ class C {
   }
 }
 </code></pre></td><td><pre><code class="language-scala">case class C(c: Int)</code></pre></td></tr>
-  <tr><th colspan="2">bean / mutable data structure</th></tr>
+  </table>
+<h3 style="text-align: center;">bean / mutable data structure</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">public class C implements Serializable {
   private int c;
 
@@ -191,7 +230,10 @@ class C {
     this(0)
   }
 }</code></pre></td></tr>
-  <tr><th colspan="2">control structures</th></tr>
+  </table>
+<h3 style="text-align: center;">control structures</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">return;</code></pre></td><td><pre><code class="language-scala">// no statement needed</code></pre></td></tr>
   <tr><td><pre><code class="language-java">return 0;</code></pre></td><td><pre><code class="language-scala">0</code></pre></td></tr>
   <tr><td><pre><code class="language-java">return test ? 0 : 1;</code></pre></td><td><pre><code class="language-scala">if (test) 0 else 1</code></pre></td></tr>
@@ -258,7 +300,10 @@ value match {
   case _ =&gt;
     val i = 0;
 }</code></pre></td></tr>
-  <tr><th colspan="2">exceptions</th></tr>
+  </table>
+<h3 style="text-align: center;">exceptions</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">throw new Exception();</code></pre></td><td><pre><code class="language-scala">throw new Exception()</code></pre></td></tr>
   <tr><td><pre><code class="language-java">try {
 } catch (IOException e) {
@@ -268,11 +313,17 @@ value match {
     case e: IOException =&gt;
     case e: RuntimeException =&gt;
 } finally {}</code></pre></td></tr>
-  <tr><th colspan="2">try-with-resources</th></tr>
+  </table>
+<h3 style="text-align: center;">try-with-resources</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">try (InputStream i0 = new InputStream();
      InputStream i1 = new InputStream()) {
 }</code></pre></td><td>☹</td></tr>
-  <tr><th colspan="2">data types</th></tr>
+  </table>
+<h3 style="text-align: center;">data types</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">void</code></pre></td><td><pre><code class="language-scala">Unit</code></pre></td></tr>
   <tr><td><pre><code class="language-java">bool</code></pre></td><td><pre><code class="language-scala">Boolean</code></pre></td></tr>
   <tr><td><pre><code class="language-java">byte</code></pre></td><td><pre><code class="language-scala">Byte</code></pre></td></tr>
@@ -284,9 +335,15 @@ value match {
   <tr><td><pre><code class="language-java">Object</code></pre></td><td><pre><code class="language-scala">AnyRef</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">Any</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">AnyVal</code></pre></td></tr>
-  <tr><th colspan="2">null</th></tr>
+  </table>
+<h3 style="text-align: center;">null</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">null</code></pre></td><td><pre><code class="language-scala">null</code></pre></td></tr>
-  <tr><th colspan="2">arrays</th></tr>
+  </table>
+<h3 style="text-align: center;">arrays</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">int[] ints;
 int thirdInt = int[2];</code></pre></td><td><pre><code class="language-scala">var ints: Array[Int]
 var thirdInt = ints(2)</code></pre></td></tr>
@@ -319,23 +376,33 @@ or
   <tr><td>☹</td><td><pre><code class="language-scala">def triple[T: ClassTag](): Array[T] = {
   Array.ofDim[T](3)
 }</code></pre></td></tr>
-  <tr><th colspan="2">equality operations</th></tr>
-  <tr><th colspan="2">for primitives</th></tr>
+  </table>
+<h3 style="text-align: center;">equality operations</h3>
+<h4 style="text-align: center;">for primitives</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">==, !=</code></pre></td><td><pre><code class="language-scala">==, !=</code></pre></td></tr>
-  <tr><th colspan="2">for references</th></tr>
+  </table>
+<h4 style="text-align: center;">for references</h4>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">==, !=</code></pre></td><td><pre><code class="language-scala">eq, ne</code></pre></td></tr>
   <tr><td><pre><code class="language-java">.equals</code></pre></td><td><pre><code class="language-scala">==, !=</code></pre></td></tr>
-  <tr><th colspan="2">other operations</th></tr>
+  </table>
+<h3 style="text-align: center;">other operations</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">&amp;&amp;, ||, !</code></pre></td><td><pre><code class="language-scala">&amp;&amp;, ||, !</code></pre></td></tr>
   <tr><td><pre><code class="language-java">&lt;, &gt;, &lt;=, &gt;=</code></pre></td><td><pre><code class="language-scala">&lt;, &gt;, &lt;=, &gt;=</code></pre></td></tr>
   <tr><td><pre><code class="language-java">+, -, *, /, %</code></pre></td><td><pre><code class="language-scala">+, -, *, /, %</code></pre></td></tr>
   <tr><td><pre><code class="language-java">&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</code></pre></td><td><pre><code class="language-scala">&amp;, |, ^, ~, &lt;&lt;, &gt;&gt; &gt;&gt;&gt;</code></pre></td></tr>
   <tr><td><pre><code class="language-java">+=, -=, *=, /=, %=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</code></pre></td><td><pre><code class="language-scala">+=, -=, *=, /=, %=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</code></pre></td></tr>
   <tr><td><pre><code class="language-java">++, --</code></pre></td><td>☹</td></tr>
-  <tr><td><pre><code class="language-java">?:</code></pre>
-  example
-<pre><code class="language-java">int i = test ? 0 : 1;</code></pre></td><td><pre><code class="language-scala">var i = if (test) 0 else 1</code></pre></td></tr>
-  <tr><th colspan="2">io</th></tr>
+  <tr><td><pre><code class="language-java">int i = test ? 0 : 1;</code></pre></td><td><pre><code class="language-scala">var i = if (test) 0 else 1</code></pre></td></tr>
+  </table>
+<h3 style="text-align: center;">io</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td colspan="2">writing to files or standard error is the same</td></tr>
   <tr><td><pre><code class="language-java">System.out.println("hi");</code></pre></td><td><pre><code class="language-scala">println("hi")</code></pre></td></tr>
   <tr><td><pre><code class="language-java">InputStreamReader reader =
@@ -350,7 +417,10 @@ for (line &lt;- reader.lines.iterator.asScala) {}</code></pre>
 or
 <pre><code class="language-scala">val source = io.Source.fromFile("file")
 for (line &lt;- source.getLines()) {}</code></pre></td></tr>
-  <tr><th colspan="2">singleton</th></tr>
+  </table>
+<h3 style="text-align: center;">singleton</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">public class S {
   private static S ourInstance = new S();
 
@@ -385,7 +455,10 @@ object S {
 </code></pre></td><td><pre><code class="language-scala">class Number(val i: Int)
 
 object Zero extends Number(0)</code></pre></td></tr>
-  <tr><th colspan="2"><code>for</code> syntax</th></tr>
+</table>
+  <h3 style="text-align: center;"><code>for</code> syntax</h3>
+<table style="margin-left:auto; margin-right:auto;">
+  <tr><th>Java</th><th>Scala</th></tr>
   <tr><td>
   Classic Java
   <pre><code class="language-java">static List&lt;Integer&gt; duplicate(int i) {
@@ -446,8 +519,10 @@ for {
   value0 &lt;- future0
   value1 &lt;- future1
 } yield value0 + value1</code></pre></td></tr>
-  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></th></tr>
-  <tr><th colspan="2"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collection conversions</a></th></tr>
+</table>
+  <h3 style="text-align: center;"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">class Integers {
   public static java.util.List&lt;Integer&gt; list;
 }</code></pre></td><td><pre><code class="language-scala">
@@ -464,7 +539,10 @@ Collection&lt;Object&gt; list =
   JavaConverters.asJavaCollection(Integers.list());</code></pre></td><td><pre><code class="language-scala">object Integers {
   val list: Seq[Int] = Seq(1)
 }</code></pre></td></tr>
-  <tr><th colspan="2">lambda creation</th></tr>
+  </table>
+<h3 style="text-align: center;">lambda creation</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">Function&lt;Integer, String&gt; toString =
   i -> i.toString();</code></pre></td><td><pre><code class="language-scala">val toString: Integer =&gt; String =
   i =&gt; i.toString</code></pre></td></tr>
@@ -489,7 +567,10 @@ val result = toString(3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">IntSupplier read =
   () -> 3;</code></pre></td><td><pre><code class="language-scala">val read: Unit =&gt; Int =
   () =&gt; 3</code></pre></td></tr>
-   <tr><th colspan="2">lambda calls</th></tr>
+   </table>
+<h3 style="text-align: center;">lambda calls</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">Function&lt;Integer, String&gt; toString;
 toString.apply(3);</code></pre></td><td><pre><code class="language-scala">val toString: Integer =&gt; String
 toString(3)</code></pre></td></tr>
@@ -499,7 +580,10 @@ print("hi")</code></pre></td></tr>
   <tr><td><pre><code class="language-java">Supplier&lt;Integer&gt; read;
 read.get();</code></pre></td><td><pre><code class="language-scala">val read: Unit =&gt; Integer
 read()</code></pre></td></tr>
-   <tr><th colspan="2">comments</th></tr>
+   </table>
+<h3 style="text-align: center;">comments</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">// comment</code></pre></td><td><pre><code class="language-scala">// comment</code></pre></td></tr>
   <tr><td><pre><code class="language-java">/*
   multiline comment
