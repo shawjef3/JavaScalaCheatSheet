@@ -58,7 +58,7 @@ or
   }
 }</code></pre></td><td><pre><code class="language-scala">class C(var i: Int)</code></pre></td></tr>
   </table>
-<h3 style="text-align: center;">interfaces</h3>
+<h3 style="text-align: center;">interfaces/traits</h3>
 <table style="margin-left:auto; margin-right:auto;">
 <tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">interface I {}</code></pre></td><td><pre><code class="language-scala">trait I</code></pre></td></tr>
@@ -68,7 +68,7 @@ or
   def method(i: Int): Unit
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">interface I {
-  void method(int i) {}
+  default void method(int i) {}
 }</code></pre></td><td><pre><code class="language-scala">trait I {
   def method(i: Int): Unit = {}
 }</code></pre></td></tr>
@@ -283,22 +283,6 @@ do {
 }</code></pre></td><td><pre><code class="language-scala">value match {
   case 0 | 1 =&gt;
   case _ =&gt;
-}</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">// cases share switch's scope
-switch (value) {
-  case 0: {
-    int i = 0;
-    break;
-  }
-  default: {
-    int i = 0;
-  }
-}</code></pre></td><td><pre><code class="language-scala">// cases each have their own scope
-value match {
-  case 0 =&gt;
-    val i = 0;
-  case _ =&gt;
-    val i = 0;
 }</code></pre></td></tr>
   </table>
 <h3 style="text-align: center;">exceptions</h3>
@@ -590,9 +574,46 @@ read()</code></pre></td></tr>
 */</code></pre></td><td><pre><code class="language-scala">/*
   multiline comment
 */</code></pre></td></tr>
-   <tr><th colspan="2"></th></tr>
+</table>
+<h3 style="text-align: center;">lexical scoping</h3>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
+<tr><td>☹</td><td><pre><code class="language-scala">val i = 0
+{
+  val i = 1
+}</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">// cases share scope
+switch (value) {
+  case 0: {
+    int i = 0;
+    break;
+  }
+  default: {
+    int i = 0;
+  }
+}</code></pre></td><td><pre><code class="language-scala">// cases each have their own scope
+value match {
+  case 0 =&gt;
+    val i = 0;
+  case _ =&gt;
+    val i = 0;
+}</code></pre></td></tr>
+</table>
+<h3 style="text-align: center;">statement sequencing</h3>
+<table style="margin-left:auto; margin-right:auto;">
+  <tr><th>Java</th><th>Scala</th></tr>
+  <tr><td><pre><code class="language-java">int i = 0; int j = 1;</code></pre></td><td><pre><code class="language-scala">var i = 0; var j = 1</code></pre>
+  or
+<pre><code class="language-scala">var i = 0
+var j = 1</code></pre></td></tr>
+</table>
+<!-- section template
+<h3 style="text-align: center;"></h3>
+<table style="margin-left:auto; margin-right:auto;">
+  <tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java"></code></pre></td><td><pre><code class="language-scala"></code></pre></td></tr>
 </table>
+-->
 
 </body>
 </html>
