@@ -93,7 +93,11 @@ or
   or
 <pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int f(int i) {return i;}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Int = i</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int f(int ints...) {return Arrays.stream(ints).sum();}</code></pre></td><td><pre><code class="language-scala">def f(ints: Int*): Int = ints.sum</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int f(int ... ints) {return Arrays.stream(ints).sum();}
+f(1, 2, 3);
+f(new int[] {1, 2, 3})</code></pre></td><td><pre><code class="language-scala">def f(ints: Int*): Int = ints.sum
+f(1, 2, 3)
+f(Seq(1, 2, 3): _*)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">f(1,2,3);</code></pre></td><td><pre><code class="language-scala">f(1,2,3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[] ints;
 f(ints);</code></pre></td><td><pre><code class="language-scala">val ints: Array[Int]
@@ -234,7 +238,7 @@ class C {
 <h3 style="text-align: center;">control structures</h3>
 <table style="margin-left:auto; margin-right:auto;">
 <tr><th>Java</th><th>Scala</th></tr>
-  <tr><td><pre><code class="language-java">return;</code></pre></td><td><pre><code class="language-scala">// no statement needed</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">return;</code></pre></td><td><pre><code class="language-scala">return</code></pre></td></tr>
   <tr><td><pre><code class="language-java">return 0;</code></pre></td><td><pre><code class="language-scala">0</code></pre></td></tr>
   <tr><td><pre><code class="language-java">return test ? 0 : 1;</code></pre></td><td><pre><code class="language-scala">if (test) 0 else 1</code></pre></td></tr>
   <tr><td><pre><code class="language-java">if (test) {
@@ -325,42 +329,6 @@ do {
 <tr><th>Java</th><th>Scala</th></tr>
   <tr><td><pre><code class="language-java">null</code></pre></td><td><pre><code class="language-scala">null</code></pre></td></tr>
   </table>
-<h3 style="text-align: center;">arrays</h3>
-<table style="margin-left:auto; margin-right:auto;">
-<tr><th>Java</th><th>Scala</th></tr>
-  <tr><td><pre><code class="language-java">int[] ints;
-int thirdInt = int[2];</code></pre></td><td><pre><code class="language-scala">var ints: Array[Int]
-var thirdInt = ints(2)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[] ints = new int[] {1,2,3};</code></pre></td><td><pre><code class="language-scala">var ints = Array(1,2,3)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[][] ints = new int[][] {
-  {1,2,3},
-  {4,5,6},
-  {7,8,9}
-};</code></pre></td><td><pre><code class="language-scala">var ints = Array(
-  Array(1,2,3),
-  Array(4,5,6),
-  Array(7,8,9)
-)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[] ints = new int[3];</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[][] ints = new int[3];
-for (int i=0; i&lt;3; i++) {
-  ints[i] = new int[3]; 
-}</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3, 3)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int[] ints = new int[3];
-Arrays.fill(ints, 0);</code></pre></td><td><pre><code class="language-scala">var ints = Array.fill(3)(0)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">String[] intStrings = new String[3];
-for (int i=0; i&lt;3; i++) {
-  intStrings[i] = Integer.toString(i);
-}</code></pre>
-or
-<pre><code class="language-java">IntStream.range(0, 3)
-  .mapToObj(Integer::toString)
-  .toArray();</code></pre>
-</td><td><pre><code class="language-scala">var intStrings = Array.tabulate(3)(_.toString)</code></pre></td></tr>
-  <tr><td>☹</td><td><pre><code class="language-scala">def triple[T: ClassTag](): Array[T] = {
-  Array.ofDim[T](3)
-}</code></pre></td></tr>
-  </table>
 <h3 style="text-align: center;">equality operations</h3>
 <h4 style="text-align: center;">for primitives</h4>
 <table style="margin-left:auto; margin-right:auto;">
@@ -422,6 +390,12 @@ Values inside of objects are also singletons.<br>
 
 object S {
   val instance = new S
+}</code></pre>
+Objects inside objects are also singletons<br>
+<pre><code class="language-scala">class S
+
+object S {
+  object Instance extends S
 }</code></pre></td></tr>
   <tr><td><pre><code class="language-java">public class Number {
   private int i;
@@ -455,9 +429,11 @@ List&lt;Integer&gt; js = Arrays.asList(4,5,6);
 List&lt;Integer&gt; duplicateSums = new ArrayList&lt;&gt;();
 
 for (int i: is) {
-  for (int j : js) {
-    for (int duplicated : duplicate(i + j)) {
-      duplicateSums.add(duplicated);
+  if (i &lt; 3) {
+    for (int j : js) {
+      for (int duplicated : duplicate(i + j)) {
+        duplicateSums.add(duplicated);
+      }
     }
   }
 }
@@ -473,11 +449,12 @@ Java Streams
 IntStream is = IntStream.of(1,2,3);
 IntStream js = IntStream.of(4,5,6);
 IntStream duplicateSums =
-  is.flatMap(i -&gt;
-    js.flatMap(j -&gt;
-      duplicate(i + j)
-    )
-  );
+  is.filter(i -> i < 3).
+    flatMap(i -&gt;
+      js.flatMap(j -&gt;
+        duplicate(i + j)
+      )
+    );
 
 return duplicateSums.boxed().collect(Collectors.toList());</code></pre>
 </td><td><pre><code class="language-scala">def duplicate(i: Int): Seq[Int] = Seq(i, i)
@@ -485,6 +462,7 @@ val is = Seq(1,2,3)
 val js = Seq(4,5,6)
 for {
   i &lt;- is
+  if i &lt; 3
   j &lt;- js
   duplicated &lt;- duplicate(i + j)
 } yield duplicated
@@ -504,25 +482,85 @@ for {
   value1 &lt;- future1
 } yield value0 + value1</code></pre></td></tr>
 </table>
-  <h3 style="text-align: center;"><a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html">collections</a></h3>
+<h3 style="text-align: center;">collections</h3><p>
+<a href="https://docs.scala-lang.org/overviews/collections/conversions-between-java-and-scala-collections.html"><div style="text-align: center;">converting collections</div></a>
+<h4 style="text-align: center;">arrays</h4>
 <table style="margin-left:auto; margin-right:auto;">
 <tr><th>Java</th><th>Scala</th></tr>
-  <tr><td><pre><code class="language-java">class Integers {
-  public static java.util.List&lt;Integer&gt; list;
-}</code></pre></td><td><pre><code class="language-scala">
-import scala.collection.JavaConverters._
-val list: Seq[Integer] = Integers.list.asScala</code></pre></td></tr>
-   <tr><td><pre><code class="language-java">import scala.collection.JavaConverters;
-Collection&lt;String&gt; list =
-   JavaConverters.asJavaCollection(Strings.list());</code></pre></td><td><pre><code class="language-scala">object Strings {
-  val list: Seq[String] = Seq("hi")
+  <tr><td><pre><code class="language-java">int[] ints;
+int thirdInt = int[2];</code></pre></td><td><pre><code class="language-scala">var ints: Array[Int]
+var thirdInt = ints(2)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int[] ints = new int[] {1,2,3};</code></pre></td><td><pre><code class="language-scala">var ints = Array(1,2,3)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int[][] ints = new int[][] {
+  {1,2,3},
+  {4,5,6},
+  {7,8,9}
+};</code></pre></td><td><pre><code class="language-scala">var ints = Array(
+  Array(1,2,3),
+  Array(4,5,6),
+  Array(7,8,9)
+)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int[] ints = new int[3];</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int[][] ints = new int[3];
+for (int i=0; i&lt;3; i++) {
+  ints[i] = new int[3]; 
+}</code></pre></td><td><pre><code class="language-scala">var ints = Array.ofDim[Int](3, 3)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int[] ints = new int[3];
+Arrays.fill(ints, 0);</code></pre></td><td><pre><code class="language-scala">var ints = Array.fill(3)(0)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">String[] intStrings = new String[3];
+for (int i=0; i&lt;3; i++) {
+  intStrings[i] = Integer.toString(i);
+}</code></pre>
+or
+<pre><code class="language-java">IntStream.range(0, 3)
+  .mapToObj(Integer::toString)
+  .toArray();</code></pre>
+</td><td><pre><code class="language-scala">var intStrings = Array.tabulate(3)(_.toString)</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-scala">def triple[T: ClassTag](): Array[T] = {
+  Array.ofDim[T](3)
 }</code></pre></td></tr>
-   <tr><td><pre><code class="language-java">// Java can't handle collections of primitives.
-import scala.collection.JavaConverters;
-Collection&lt;Object&gt; list =
-  JavaConverters.asJavaCollection(Integers.list());</code></pre></td><td><pre><code class="language-scala">object Integers {
-  val list: Seq[Int] = Seq(1)
-}</code></pre></td></tr>
+<tr><td><pre><code class="language-java">Arrays.hashCode(array)</code></pre></td><td><pre><code class="language-scala">array.hashCode</code></pre></td></tr>
+<tr><td><pre><code class="language-java">Arrays.equals(array0, array1)</code></pre></td><td><pre><code class="language-scala">array0 == array1</code></pre></td></tr>
+  </table>
+<h4 style="text-align: center;">mutable collections</h4><p>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers = new ArrayList&lt;&gt;();</code></pre></td><td><pre><code class="language-scala">var integers: collection.mutable.ListBuffer[Int] =
+  collection.mutable.ListBuffer()</code></pre></td></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers = Arrays.asList(0, 1, 2);</code></pre></td><td><pre><code class="language-scala">var integers: collection.mutable.ListBuffer[Int] =
+  collection.mutable.ListBuffer(0, 1, 2)</code></pre></td></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers =
+  IntStream.range(0, 2).boxed().collect(Collectors.toList());</code></pre></td><td><pre><code class="language-scala">var integers: collection.mutable.ListBuffer[Int] =
+  collection.mutable.ListBuffer(0 to 2: _*)</code></pre></td></tr>
+<tr><td><pre><code class="language-java">Set&lt;Integer&gt; integers = new HashSet&lt;&gt;();
+integers.add(0);
+integers.add(1);
+integers.add(2);</code></pre></td><td><pre><code class="language-scala">var integers: collection.mutable.Set[Int] =
+  collection.mutable.Set(0, 1, 2)</code></pre></td></tr>
+<tr><td><pre><code class="language-java">IntStream.range(0, 3).boxed().collect(Collectors.toSet());</code></pre></td><td><pre><code class="language-scala">var integers: collection.mutable.Set[Int] =
+  collection.mutable.Set(0 until 3: _*)</code></pre></td></tr>
+  </table>
+  <h4 style="text-align: center;">immutable collections</h4><p>
+<table style="margin-left:auto; margin-right:auto;">
+<tr><th>Java</th><th>Scala</th></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers = Collections.emptyList();</code></pre></td><td><pre><code class="language-scala">var integers: List[Int] = List()</code></pre></td></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers = Collections.unmodifiableList(
+  Arrays.asList(0, 1, 2)
+);</code></pre></td><td><pre><code class="language-scala">var integers: List[Int] = List(0, 1, 2)</code></pre></td></tr>
+<tr><td><pre><code class="language-java">List&lt;Integer&gt; integers =
+  Collections.unmodifiableList(
+    IntStream.range(0, 3).boxed().collect(Collectors.toList())
+  );</code></pre></td><td><pre><code class="language-scala">var integers: List[Int] = 0 until 3 toList</code></pre></td></tr>
+<tr><td><pre><code class="language-java">Set&lt;Integer&gt; mutableIntegers = new HashSet&lt;&gt;();
+mutableIntegers.add(0);
+mutableIntegers.add(1);
+mutableIntegers.add(2);
+Set&lt;Integer&gt; integers =
+  Collections.unmodifiableSet(mutableIntegers);</code></pre></td><td><pre><code class="language-scala">var integers: Set[Int] = Set(0, 1, 2)</code></pre></td></tr>
+<tr><td><pre><code class="language-java">Set&lt;Integer&gt; integers =
+  Collections.unmodifiableSet(
+    IntStream.range(0, 3).boxed().collect(Collectors.toSet())
+  );</code></pre></td><td><pre><code class="language-scala">var integers: Set[Int] = 0 until 3 toSet</code></pre></td></tr>
   </table>
 <h3 style="text-align: center;">lambda creation</h3>
 <table style="margin-left:auto; margin-right:auto;">
