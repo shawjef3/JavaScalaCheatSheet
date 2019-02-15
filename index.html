@@ -588,7 +588,7 @@ Set&lt;Integer&gt; integers =
   i -> i.toString();</code></pre></td><td><pre><code class="language-scala">val toString: Integer =&gt; String =
   i =&gt; i.toString</code></pre></td></tr>
   <tr><td><pre><code class="language-java">Function&lt;Integer, String&gt; toString;
-Integer result = toString.apply(3);</code></pre></td><td><pre><code class="language-scala">val toString: Integer =&gt; String
+String result = toString.apply(3);</code></pre></td><td><pre><code class="language-scala">val toString: Integer =&gt; String
 val result = toString(3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">Function&lt;Integer, String&gt; toString =
   Object::toString;</code></pre></td><td><pre><code class="language-scala">val toString: Int =&gt; String =
