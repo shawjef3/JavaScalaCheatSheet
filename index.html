@@ -57,6 +57,21 @@ or
     this.i = i;
   }
 }</code></pre></td><td><pre><code class="language-scala">class C(var i: Int)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">class C {
+  public int i;
+
+  public C(int i) {
+    this.i = i;
+  }
+
+  public C() {
+    this(0);
+  }
+}</code></pre></td><td><pre><code class="language-scala">class C(var i: Int) {
+  def this() {
+    this(0)
+  }
+}</code></pre></td></tr>
   </table>
 <h3 style="text-align: center;">interfaces/traits</h3>
 <table style="margin-left:auto; margin-right:auto;">
@@ -92,20 +107,24 @@ or
   <tr><td><pre><code class="language-java">void f(int i) {}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Unit = {}</code></pre>
   or
 <pre><code class="language-scala">def f(i: Int): Unit = ()</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">int f(int i) {return i;}</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Int = i</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int f(int i) {return i;}
+f(1);</code></pre></td><td><pre><code class="language-scala">def f(i: Int): Int = i
+f(1)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int f(int ... ints) {return Arrays.stream(ints).sum();}
 f(1, 2, 3);
 f(new int[] {1, 2, 3})</code></pre></td><td><pre><code class="language-scala">def f(ints: Int*): Int = ints.sum
 f(1, 2, 3)
 f(Seq(1, 2, 3): _*)</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">f(1,2,3);</code></pre></td><td><pre><code class="language-scala">f(1,2,3)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">int[] ints;
 f(ints);</code></pre></td><td><pre><code class="language-scala">val ints: Array[Int]
 f(ints: _*)</code></pre></td></tr>
   <tr><td><pre><code class="language-java">&lt;T, U&gt; U f(T arg);</code></pre></td><td><pre><code class="language-scala">def f[T, U](arg: T): U</code></pre></td></tr>
   <tr><td><pre><code class="language-java">void f(List&lt;?&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_]): Unit</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">void f(List&lt;? extends A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &lt;: A]): Unit</code></pre></td></tr>
-  <tr><td><pre><code class="language-java">void f(List&lt;? super A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f(args: List[_ &gt;: A]): Unit</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">&lt;A&gt; void f(List&lt;? extends A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f[A](args: List[_ &lt;: A]): Unit</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">&lt;A&gt; void f(List&lt;? super A&gt; args);</code></pre></td><td><pre><code class="language-scala">def f[A](args: List[_ &gt;: A]): Unit</code></pre></td></tr>
+  <tr><td>☹</td><td><pre><code class="language-scala">def f(arg0: Int, arg1: Int): Unit
+f(arg0 = 3, arg1 = 4)
+f(arg1 = 4, arg0 = 3)</code></pre></td></tr>
   </table>
 <h3 style="text-align: center;">statics</h3>
 <table style="margin-left:auto; margin-right:auto;">
