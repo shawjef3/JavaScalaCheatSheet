@@ -125,6 +125,12 @@ f(ints: _*)</code></pre></td></tr>
   <tr><td>☹</td><td><pre><code class="language-scala">def f(arg0: Int, arg1: Int): Unit
 f(arg0 = 3, arg1 = 4)
 f(arg1 = 4, arg0 = 3)</code></pre></td></tr>
+  <tr><td><pre><code class="language-java">int f(int a){
+  return f(a, 0);
+}
+int f(int a, int b) {
+  return a + b
+}</code></pre></td><td><pre><code class="language-scala">def f(a: Int, b: Int = 0): Int = a + b</code></pre></td></tr>
   </table>
 <h3 style="text-align: center;">statics</h3>
 <table style="margin-left:auto; margin-right:auto;">
